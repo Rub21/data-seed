@@ -90,6 +90,12 @@
     "watchify": "^3.11.0"
   },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0"
+    "history": "^4.7.2",
+    "lodash.defaultsdeep": "^4.6.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   }
 }
