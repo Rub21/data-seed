@@ -1,0 +1,85 @@
+@import "ui-seed/settings/variables";
+@import "ui-seed/settings/functions";
+@import "ui-seed/settings/mixins";
+
+.wrapper {
+	display: grid;
+	grid-gap: 5px;
+  	grid-template-columns: 200px auto 200px;
+	grid-template-rows: 50px auto 50px;
+  	grid-template-areas: 
+    "sidebar  header  header"
+    "sidebar content sidebar2"
+    "sidebar  footer  footer";
+  	height: 100vh;
+	margin: 0;
+}
+
+.sidebar {
+	grid-area: sidebar;
+	background-color: $base-color;  
+
+}
+
+.sidebar2 {
+	grid-area: sidebar2;
+}
+
+.content {
+	grid-area: content;
+}
+
+.header {
+	grid-area: header;
+}
+
+.footer {
+	grid-area: footer;
+}
+
+.wrapper {
+	color: #444;
+}
+
+@media only screen and (max-width: 900px) {
+	.wrapper {
+    	grid-template-columns: 250px auto;
+	  	grid-template-rows: 50px 5fr 1fr 50px;
+    	grid-template-areas: 
+		"sidebar   header"
+		"sidebar  content"
+		"sidebar sidebar2"
+		"footer   footer";
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.wrapper {
+		grid-template-columns: auto;
+		grid-template-rows: 50px 50px 5fr 1fr 50px;
+		grid-template-areas: 
+		"header" 
+		"sidebar" 
+		"content" 
+		"sidebar2"
+		"footer";
+	}
+}
+
+.box {
+	color: #fff;
+	padding: 10px;
+}
+
+.header {
+	background-color: $primary-color;
+
+}
+
+.footer {
+	background-color: $base-color;
+}
+
+.sidebar2 {
+	background-color:$base-alpha-color;
+}
