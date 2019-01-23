@@ -1,85 +1,46 @@
-@import "ui-seed/settings/variables";
-@import "ui-seed/settings/functions";
-@import "ui-seed/settings/mixins";
-
-.wrapper {
-	display: grid;
-	grid-gap: 5px;
-  	grid-template-columns: 200px auto 200px;
-	grid-template-rows: 50px auto 50px;
-  	grid-template-areas: 
-    "sidebar  header  header"
-    "sidebar content sidebar2"
-    "sidebar  footer  footer";
-  	height: 100vh;
-	margin: 0;
+.container {
+    display: grid;
+    grid-template-areas: "nav  header  header" "nav content side" "nav  footer  footer";
+    grid-template-columns: 200px auto 200px;
+    grid-template-rows: 46px auto 50px; // grid-gap: 5px;
+    height: 100vh;
+    margin: 0;
 }
 
-.sidebar {
-	grid-area: sidebar;
-	background-color: $base-color;  
-
+header {
+    grid-area: header; 
 }
 
-.sidebar2 {
-	grid-area: sidebar2;
+nav {
+    grid-area: nav;
+    background-color: $base-color;
 }
 
-.content {
-	grid-area: content;
+main {
+    grid-area: content;
 }
 
-.header {
-	grid-area: header;
+aside {
+    grid-area: side;
+    margin-right: 0.5rem;
 }
 
-.footer {
-	grid-area: footer;
-}
-
-.wrapper {
-	color: #444;
+footer {
+    grid-area: footer;
 }
 
 @media only screen and (max-width: 900px) {
-	.wrapper {
-    	grid-template-columns: 250px auto;
-	  	grid-template-rows: 50px 5fr 1fr 50px;
-    	grid-template-areas: 
-		"sidebar   header"
-		"sidebar  content"
-		"sidebar sidebar2"
-		"footer   footer";
-	}
+    .container {
+        grid-template-columns: 250px auto;
+        grid-template-rows: 46px 5fr 1fr 50px;
+        grid-template-areas: "nav header" "nav content" "nav side" "nav footer";
+    }
 }
 
 @media only screen and (max-width: 500px) {
-	.wrapper {
-		grid-template-columns: auto;
-		grid-template-rows: 50px 50px 5fr 1fr 50px;
-		grid-template-areas: 
-		"header" 
-		"sidebar" 
-		"content" 
-		"sidebar2"
-		"footer";
-	}
-}
-
-.box {
-	color: #fff;
-	padding: 10px;
-}
-
-.header {
-	background-color: $primary-color;
-
-}
-
-.footer {
-	background-color: $base-color;
-}
-
-.sidebar2 {
-	background-color:$base-alpha-color;
+    .container {
+        grid-template-columns: auto;
+        grid-template-rows: 46px 50px 5fr 1fr 50px;
+        grid-template-areas: "header" "nav" "content" "side" "footer";
+    }
 }

@@ -1,0 +1,18 @@
+header .header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    height: 46px;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid rgba(238, 238, 238, 1);
+    color: rgba(117, 117, 117, 1);
+    box-shadow: 5px 10px 20px -20px $base-color;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+    justify-content: end; 
+}
