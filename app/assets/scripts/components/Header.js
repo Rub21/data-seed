@@ -5,12 +5,34 @@ class Header extends Component {
     return (
       <header>
         <div className="header-container">
-          <div className="title">
-            <a href="#" title="Data seed Homepage">
-              <h1>
+          <ul className="header_navigation" role="navigation">
+            <li className="header_navigation_collased_icon">
+              <h2>☰</h2>
+            </li>
+
+            <li className="header_navigation_title">
+              <a href=""> <h1>
                 Data seed
               </h1>
-            </a>
+              </a>
+            </li>
+
+            <li className="nav__tab" role="presentation">
+              <a href="#" className="nav__link nav__link--active" title="View item" role="tab"><span>About</span></a>
+            </li>
+          </ul>
+
+          {/* <div className="title-container">
+            <div>
+              <h2>☰</h2>
+            </div>
+            <div>
+              <a href="#">
+                <h1>
+                  Data seed
+              </h1>
+              </a>
+            </div>
           </div>
           <div>
             <ul className="nav__tablist" role="tablist">
@@ -18,7 +40,7 @@ class Header extends Component {
                 <a href="#" className="nav__link nav__link--active" title="View item" role="tab"><span>About</span></a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </header>
     );

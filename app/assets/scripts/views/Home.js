@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 class Home extends Component {
   render () {
     return (
-      <div className="container">
+      <div className="container sidebar-collased ">
         {/* sidebar-collased */}
         <Header/>
         <Sidebar/>

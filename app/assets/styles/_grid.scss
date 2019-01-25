@@ -2,11 +2,12 @@ $header-height : 46px;
 $footer-height : 46px;
 $sidebar-width : 200px;
 $aside-width : 200px;
+
 $sidebar-width-collased : 50px;
 .container {
     display: grid;
     grid-template-areas: 
-        "sidebar  header  header" 
+        "header  header  header" 
         "sidebar content side" 
         "sidebar  footer  footer";
     grid-template-columns: $sidebar-width auto $aside-width;
@@ -25,7 +26,9 @@ header {
 
 sidebar {
     grid-area: sidebar;
-    background-color: $base-color;
+    // background-color: $base-color;
+    border: 1px solid #45DDAA;
+
 }
 
 main {
@@ -47,7 +50,7 @@ footer {
         grid-template-columns: $sidebar-width auto;
         grid-template-rows: $header-height 5fr 1fr $footer-height;
         grid-template-areas: 
-            "sidebar header" 
+            "header header" 
             "sidebar content" 
             "sidebar side" 
             "sidebar footer";
