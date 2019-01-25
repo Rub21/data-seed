@@ -1,7 +1,6 @@
 sidebar .sidebar_container {
     display: flex;
     flex-direction: column;
-    background-color: $base_color;
 }
 
 .sidebar_content ul {
@@ -11,30 +10,24 @@ sidebar .sidebar_container {
 
 .sidebar_content ul li {
     display: flex;
-    width: $sidebar-width; 
-    border: 1px solid $primary_color;
+    border-bottom: 1px solid #999999;
     height: 40px;
     line-height: 40px;
 }
 
 .sidebar_content ul li i {
     width: $sidebar-width-collased;
+    min-width: $sidebar-width-collased;
     line-height: 40px;
     text-align: center;
 }
 
-// //sidebar Collased
-.sidebar-collased .sidebar_content ul li {
-    width: $sidebar-width-collased;
+// Sidebar collased hover
+.sidebar-collased .sidebar_content ul li span {
+    overflow: hidden;
 }
-
-// .sidebar-collased .sidebar_content ul li i {
-//     width: 40px;
-// }
-
-// //Sidebar collased hover
-.sidebar_content ul li:hover {
-    background-color:  $base_color;
+.sidebar-collased .sidebar_content ul li:hover {
+    background-color: $base_color;
     cursor: pointer;
     width: $sidebar-width;
     overflow: visible;

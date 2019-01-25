@@ -26,13 +26,15 @@ header {
 
 sidebar {
     grid-area: sidebar;
-    // background-color: $base-color;
-    border: 1px solid #45DDAA;
+    background-color: $base_color;
+    display: block;
 
+    z-index: 1;
 }
 
 main {
     grid-area: content;
+    background-color: darkslategrey;
 }
 
 aside {

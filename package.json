@@ -91,6 +91,7 @@
     "watchify": "^3.11.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "history": "^4.7.2",
     "lodash.defaultsdeep": "^4.6.0",
     "react": "^16.7.0",
