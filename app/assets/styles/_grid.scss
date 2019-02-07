@@ -1,15 +1,11 @@
-$header-height : 46px;
-$footer-height : 46px;
-$sidebar-width : 200px;
-$aside-width : 200px;
-
-$sidebar-width-collased : 50px;
+$header-height: 46px;
+$footer-height: 46px;
+$sidebar-width: 200px;
+$aside-width: 200px;
+$sidebar-width-collased: 50px;
 .container {
     display: grid;
-    grid-template-areas: 
-        "header  header  header" 
-        "sidebar content side" 
-        "sidebar  footer  footer";
+    grid-template-areas: "header  header  header" "sidebar content content" "sidebar  footer  footer";
     grid-template-columns: $sidebar-width auto $aside-width;
     grid-template-rows: $header-height auto $footer-height; // grid-gap: 5px;
     height: 100vh;
@@ -20,22 +16,26 @@ $sidebar-width-collased : 50px;
     grid-template-columns: $sidebar-width-collased auto $aside-width; // grid-gap: 5px;
 }
 
+// Grid elements
 header {
-    grid-area: header; 
+    grid-area: header;
 }
 
 sidebar {
     grid-area: sidebar;
     background-color: $base_color;
     display: block;
-
     z-index: 1;
 }
 
 main {
     grid-area: content;
     background-color: darkslategrey;
+    margin: 0px;
+    padding: 0px;
+    max-width: calc(100% - $aside-width);
 }
+
 
 aside {
     grid-area: side;
@@ -51,11 +51,11 @@ footer {
     .container {
         grid-template-columns: $sidebar-width auto;
         grid-template-rows: $header-height 5fr 1fr $footer-height;
-        grid-template-areas: 
-            "header header" 
-            "sidebar content" 
-            "sidebar side" 
-            "sidebar footer";
+        grid-template-areas:
+         "header header" 
+         "sidebar content" 
+         "sidebar content" 
+         "sidebar footer";
     }
     .container.sidebar-collased {
         grid-template-columns: $sidebar-width-collased auto; // grid-gap: 5px;
@@ -66,12 +66,7 @@ footer {
     .container {
         grid-template-columns: auto;
         grid-template-rows: $header-height 50px 5fr 1fr $footer-height;
-        grid-template-areas: 
-            "header" 
-            "sidebar" 
-            "content" 
-            "side" 
-            "footer";
+        grid-template-areas: "header" "sidebar" "content" "footer";
     }
     .container.sidebar-collased {
         grid-template-columns: auto; // grid-gap: 5px;

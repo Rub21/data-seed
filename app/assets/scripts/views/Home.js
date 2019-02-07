@@ -3,12 +3,12 @@ import classNames from 'classnames';
 
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-
+import Map from '../components/Map';
 class Home extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isSidebarCollased: true
+      isSidebarCollased: false
     };
     this.toggleSidebar = this.toggleSidebar.bind(this);
   }
@@ -19,6 +19,7 @@ class Home extends Component {
     });
   }
   render () {
+    
     const classes = classNames({
       'container': true,
       'sidebar-collased': this.state.isSidebarCollased
@@ -27,19 +28,11 @@ class Home extends Component {
     return (
       <div className={classes}>
         {/* sidebar-collased */}
-        <Header toggleSidebar={this.toggleSidebar}/>
+        <Header toggleSidebar={this.toggleSidebar} />
         <Sidebar />
-
-        <main>
-
-        </main>
-
-        <aside>
-
-        </aside>
+        <Map isSidebarCollased={this.state.isSidebarCollased}></Map>
 
         <footer>
-
         </footer>
       </div>
 

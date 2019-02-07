@@ -94,6 +94,7 @@
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "lodash.defaultsdeep": "^4.6.0",
+    "mapbox-gl": "^0.52.0",
     "react": "^16.7.0",
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.7.0",
