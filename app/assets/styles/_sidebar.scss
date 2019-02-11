@@ -13,6 +13,10 @@ sidebar .sidebar_container {
     border-bottom: 1px solid #999999;
     height: 40px;
     line-height: 40px;
+    cursor: pointer;    
+}
+.sidebar_content ul li:hover {
+    color: $primary_color;
 }
 
 .sidebar_content ul li i {

@@ -6,7 +6,9 @@ class Sidebar extends Component {
       <sidebar>
         <div className="sidebar_container">
           <div className="sidebar_content">
-            <MenuLayers/>
+            <MenuLayers vectorLayers={this.props.vectorLayers} />
+            {/* <MenuLayers vectorLayers={this.props.vectorLayers} /> */}
+
           </div>
         </div>
       </sidebar>

@@ -40,6 +40,53 @@ class Map extends React.Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        /**
+         * Set the layer
+         */
+        const vectorLayers = nextProps.vectorLayers;
+        for (let i = 0; i < vectorLayers.length; i++) {
+            const vectorLayer = vectorLayers[i];
+            if (!this.map.getSource(vectorLayer.id)) {
+                this.map.addSource(vectorLayer.id, {
+                    type: 'geojson',
+                    data: vectorLayer.data
+                });
+
+                this.map.addLayer({
+                    id: vectorLayer.id,
+                    type: 'fill',
+                    source: vectorLayer.id,
+                    paint: {
+                        'fill-color': vectorLayer.color,
+                        'fill-outline-color': vectorLayer.color,
+                        'fill-opacity': 0.5
+                    }
+                });
+
+            } else {
+                // /**
+                //  * Hide all the nightlight layers and display the active item
+                //  */
+                // const layers = map.getStyle().layers;
+                // for (let i = 0; i < layers.length; i++) {
+                //     if (
+                //         layers[i].id.split(':')[0] === 'nightlight' &&
+                //         layerId !== layers[i].id
+                //     ) {
+                //         map.setLayoutProperty(layers[i].id, 'visibility', 'none');
+                //     }
+                // }
+                // map.setLayoutProperty(layerId, 'visibility', 'visible');
+            }
+
+
+        }
+
+
+    }
+
     render() {
         return <main ref={el => (this.mapContainer = el)} className="mapContent" />;
     }
