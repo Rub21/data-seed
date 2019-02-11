@@ -1,5 +1,7 @@
 import vectorLayersReducers from './vectorLayersReducers';
+import vectorLayerReducers from './vectorLayerReducers';
 
 export default {
-  vectorLayers: vectorLayersReducers
+  vectorLayers: vectorLayersReducers,
+  activeVectorLayer: vectorLayerReducers
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
+import { connect } from 'react-redux';
+
 import { mbtoken, mbstyle, environment } from '../config';
 mapboxgl.accessToken = mbtoken;
 
@@ -41,6 +43,13 @@ class Map extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
+        /**
+         * Zoom to layer
+         */
+        if (nextProps.activeVectorLayer && nextProps.activeVectorLayer.bbox) {
+            this.map.fitBounds(nextProps.activeVectorLayer.bbox);
+        }
 
         /**
          * Set the layer
@@ -92,4 +101,10 @@ class Map extends React.Component {
     }
 }
 
-export default Map;
+function mapStateToPops(state, ownProps) {
+    return {
+        activeVectorLayer: state.activeVectorLayer
+    };
+}
+
+export default connect(mapStateToPops)(Map);

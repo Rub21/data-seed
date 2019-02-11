@@ -10,7 +10,7 @@ import Sidebar from '../components/Sidebar';
 import Map from '../components/Map';
 import { vectorLayers } from '../config';
 
-import { setVectorLayers } from '../actions';
+import { setVectorLayers } from '../actions/VectorLayersActions';
 
 class Home extends Component {
   constructor (props) {

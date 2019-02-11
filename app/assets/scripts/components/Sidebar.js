@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import MenuLayers from './MenuLayers';
+import VectorLayers from './VectorLayers';
 class Sidebar extends Component {
   render () {
     return (
       <sidebar>
         <div className="sidebar_container">
           <div className="sidebar_content">
-            <MenuLayers vectorLayers={this.props.vectorLayers} />
-            {/* <MenuLayers vectorLayers={this.props.vectorLayers} /> */}
+            <VectorLayers vectorLayers={this.props.vectorLayers} />
+            {/* <VectorLayers vectorLayers={this.props.vectorLayers} /> */}
 
           </div>
         </div>
