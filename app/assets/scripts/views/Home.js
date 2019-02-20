@@ -31,6 +31,9 @@ class Home extends Component {
           vectorLayers[i].data = response[i].data;
           vectorLayers[i].bbox = bbox(response[i].data);
         }
+        console.log('------------------------------------');
+        console.log(vectorLayers);
+        console.log('------------------------------------');
         self.props.setVectorLayers({ vectorLayers });
       }));
   }
