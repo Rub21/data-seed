@@ -43,73 +43,87 @@ class Map extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
         /**
          * Zoom to layer
          */
-        if (nextProps.activeVectorLayer && nextProps.activeVectorLayer.bbox) {
-            this.map.fitBounds(nextProps.activeVectorLayer.bbox);
+        if (nextProps.bbox) {
+            this.map.fitBounds(nextProps.bbox);
         }
 
         /**
-         * Set the layer
+         * Set the layers on the map
          */
-        const vectorLayers = nextProps.vectorLayers;
-        for (let i = 0; i < vectorLayers.length; i++) {
-            const vectorLayer = vectorLayers[i];
-            if (!this.map.getSource(vectorLayer.id)) {
-
-                this.map.addSource(vectorLayer.id, {
+        const layers = nextProps.layers;
+        for (let i = 0; i < layers.length; i++) {
+            const layer = layers[i];
+            if (!this.map.getSource(layer.id)) {
+                this.map.addSource(layer.id, {
                     type: 'geojson',
-                    data: vectorLayer.data
+                    data: layer.data
                 });
-
-                if (vectorLayer.display === 'polygon') {
+                if (layer.display === 'polygon') {
                     this.map.addLayer({
-                        id: vectorLayer.id,
+                        id: layer.id,
                         type: 'fill',
-                        source: vectorLayer.id,
+                        source: layer.id,
                         paint: {
-                            'fill-color': vectorLayer.color,
-                            'fill-outline-color': vectorLayer.color,
+                            'fill-color': layer.color,
+                            'fill-outline-color': layer.color,
                             'fill-opacity': 0.5
                         }
                     });
 
-                } else if (vectorLayer.display === 'point') {
+                } else if (layer.display === 'point') {
 
                     this.map.addLayer({
-                        'id': vectorLayer.id,
+                        'id': layer.id,
                         'type': 'circle',
-                        'source': vectorLayer.id,
+                        'source': layer.id,
                         'paint': {
                             // make circles larger as the user zooms from z12 to z22
                             'circle-radius': {
                                 'base': 1.75,
                                 'stops': [[12, 2], [22, 180]]
                             },
-                            'circle-color': vectorLayer.color
+                            'circle-color': layer.color
                         }
                     });
 
-                } else if (vectorLayer.display === 'line') {
+                } else if (layer.display === 'line') {
                     this.map.addLayer({
-                        'id': vectorLayer.id,
+                        'id': layer.id,
                         'type': 'line',
-                        'source': vectorLayer.id,
+                        'source': layer.id,
                         'layout': {
                             'line-join': 'round',
                             'line-cap': 'round'
                         },
                         'paint': {
-                            'line-color': vectorLayer.color,
+                            'line-color': layer.color,
                             'line-width': 2
                         }
                     });
                 }
-            } 
+
+                /**
+                 * Show or hide the Layer
+                 */
+
+                this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
+
+            }
         }
 
+
+        // /**
+        // * Hide and show layer
+        // */
+        // if (nextProps.vectorLayer) {
+        //     console.log('------------------------------------');
+        //     console.log(nextProps.vectorLayer);
+        //     console.log('------------------------------------');
+        //     this.map.setLayoutProperty(nextProps.vectorLayer.id, 'visibility', nextProps.vectorLayer.showLayer ? 'visible' : 'none');
+        // }
 
     }
 
@@ -120,7 +134,8 @@ class Map extends React.Component {
 
 function mapStateToPops(state, ownProps) {
     return {
-        activeVectorLayer: state.activeVectorLayer
+        layers: state.layers,
+        bbox: state.bbox
     };
 }
 

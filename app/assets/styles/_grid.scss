@@ -19,11 +19,12 @@ $sidebar-width-collased: 50px;
 // Grid elements
 header {
     grid-area: header;
+    background-color: $base_color;
+    color: #ffffff;
 }
 
 sidebar {
     grid-area: sidebar;
-    background-color: $base_color;
     display: block;
     z-index: 1;
 }

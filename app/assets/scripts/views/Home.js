@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 import bbox from '@turf/bbox';
 
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import Layers from '../components/Layers';
 import Map from '../components/Map';
-import { vectorLayers } from '../config';
-
-import { setVectorLayers } from '../actions/VectorLayersActions';
+import { layers } from '../config';
+import { setLayers } from '../actions/LayersActions';
 
 class Home extends Component {
   constructor (props) {
@@ -17,7 +16,7 @@ class Home extends Component {
     this.state = {
       isSidebarCollased: false
     };
-    this.toggleSidebar = this.toggleSidebar.bind(this);
+    // this.toggleSidebar = this.toggleSidebar.bind(this);
   }
 
   componentWillMount () {
@@ -25,24 +24,22 @@ class Home extends Component {
      * Load the vector files
      */
     const self = this;
-    axios.all(vectorLayers.map(layer => axios.get(layer.url)))
+
+    axios.all(layers.map(layer => axios.get(layer.url)))
       .then(axios.spread(function (...response) {
         for (let i = 0; i < response.length; i++) {
-          vectorLayers[i].data = response[i].data;
-          vectorLayers[i].bbox = bbox(response[i].data);
+          layers[i].data = response[i].data;
+          layers[i].bbox = bbox(response[i].data);
         }
-        console.log('------------------------------------');
-        console.log(vectorLayers);
-        console.log('------------------------------------');
-        self.props.setVectorLayers({ vectorLayers });
+        self.props.setLayers(layers);
       }));
   }
 
-  toggleSidebar () {
-    this.setState({
-      isSidebarCollased: !this.state.isSidebarCollased
-    });
-  }
+  // toggleSidebar() {
+  //   this.setState({
+  //     isSidebarCollased: !this.state.isSidebarCollased
+  //   });
+  // }
 
   render () {
     const classes = classNames({
@@ -50,26 +47,30 @@ class Home extends Component {
       'sidebar-collased': this.state.isSidebarCollased
     });
 
+    const layers = this.props.layers;
+
+    console.log('----------------------HOME--------------');
+    console.log(layers);
+    console.log('------------------------------------');
     return (
       <div className={classes}>
         {/* sidebar-collased */}
-        <Header toggleSidebar={this.toggleSidebar} />
-        <Sidebar vectorLayers={vectorLayers} />
-        <Map isSidebarCollased={this.state.isSidebarCollased} vectorLayers={vectorLayers}></Map>
+        <Header />
+        <Layers layers={layers} />
+        <Map></Map>
         <footer>
         </footer>
       </div>
-
     );
   }
 }
 
 const mapStateToProps = state => ({
-  vectorLayers: state.vectorLayers
+  layers: state.layers
 });
 
 const mapDispatchToProps = {
-  setVectorLayers
+  setLayers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

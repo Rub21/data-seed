@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import color from '@material-ui/core/colors/amber';
 
 class Header extends Component {
   render () {
@@ -8,12 +9,13 @@ class Header extends Component {
         <div className="header-container">
           <ul className="header_navigation" role="navigation">
             <li className="header_navigation_collased_icon">
-              <buton className="button" onClick={this.props.toggleSidebar}>☰</buton>
+              <button className="button" >☰</button>
             </li>
             <li className="header_navigation_title">
-              <a href=""> <h1>
+              <a href="/">
+                <h1 >
                 Data seed
-              </h1>
+                </h1>
               </a>
             </li>
             <li className="nav__tab" role="presentation">
@@ -26,8 +28,8 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  toggleSidebar: PropTypes.bool.isRequired
-};
+// Header.propTypes = {
+//   toggleSidebar: PropTypes.bool.isRequired
+// };
 
 export default Header;

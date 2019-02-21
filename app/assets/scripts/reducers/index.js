@@ -1,7 +1,9 @@
-import vectorLayersReducers from './vectorLayersReducers';
-import vectorLayerReducers from './vectorLayerReducers';
+import LayersReducers from './LayersReducers';
+import LayerReducers from './LayerReducers';
+import ZoomToLayerReducers from './ZoomToLayerReducers';
 
 export default {
-  vectorLayers: vectorLayersReducers,
-  activeVectorLayer: vectorLayerReducers
+  layers: LayersReducers,
+  layer: LayerReducers,
+  bbox: ZoomToLayerReducers
 };
