@@ -86,10 +86,10 @@ gulp.task('clean', function () {
 
 // Compiles the user's script files to bundle.js.
 // When including the file in the index.html we need to refer to bundle.js not
-// main.js
+// index.js
 gulp.task('javascript', function () {
   var watcher = watchify(browserify({
-    entries: ['./app/assets/scripts/main.js'],
+    entries: ['./app/assets/scripts/index.js'],
     debug: true,
     cache: {},
     packageCache: {},
@@ -185,7 +185,7 @@ gulp.task('styles', function () {
           return v;
         }
       },
-      includePaths: require('node-bourbon').includePaths
+      includePaths: require('node-bourbon').with('node_modules/jeet/scss', require('ui-seed/gulp-addons').scssPath)
     }))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/assets/styles'))

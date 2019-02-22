@@ -1,0 +1,39 @@
+nav .sidebar_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav__contents ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav__contents ul li {
+    display: flex;
+    border-bottom: 1px solid #999999;
+    // height: 40px;
+    line-height: 40px;
+    cursor: pointer;    
+}
+.nav__contents ul li:hover {
+    // color: $primary_color;
+    background-color: $warning-color;
+}
+
+// .nav__contents ul li i {
+//     width: $nav-width-collased;
+//     min-width: $nav-width-collased;
+//     line-height: 40px;
+//     text-align: center;
+// }
+
+// // Sidebar collased hover
+// .sidebar-collased .nav__contents ul li span {
+//     overflow: hidden;
+// }
+// .sidebar-collased .nav__contents ul li:hover {
+//     background-color: $base_color;
+//     cursor: pointer;
+//     width: $nav-width;
+//     overflow: visible;
+// }

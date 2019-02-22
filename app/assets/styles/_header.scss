@@ -1,0 +1,26 @@
+header .header_navigation {
+    display: flex;
+    height: $header-height;
+    align-items: center; // padding: 0 10px;
+    // border: 1px solid rgba(238, 238, 238, 1); // border-radius: 5px;
+    font-size: 0.9em;
+    box-shadow: 5px 10px 20px -20px rgba(59, 89, 153, 1)
+}
+
+header .header_navigation .header_navigation_collased_icon buton{
+    width: $nav-width-collased;
+    text-align: center;
+    font-size: 20px;
+}
+
+header .header_navigation .header_navigation_title {
+    margin-right: auto;
+    font-size: 20px;
+}
+
+header .header_navigation li:not(:last-child):not(:first-child):not(.header_navigation_title) {
+    margin-right: 10px;
+}
+header h1{
+    color: #ffffff;
+}
