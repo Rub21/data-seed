@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import WifiIcon from '@material-ui/icons/Wifi';
+import MapIcon from '@material-ui/icons/map';
 
 import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
 import { setLayers, HideShowLayers } from '../actions/LayersActions';
@@ -44,7 +44,7 @@ class Layer extends Component {
     return (
       <ListItem onClick={this.zoomToLayer}>
         <ListItemIcon>
-          <WifiIcon />
+          <MapIcon />
         </ListItemIcon>
         <ListItemText primary={this.props.layer.name} />
         <ListItemSecondaryAction>

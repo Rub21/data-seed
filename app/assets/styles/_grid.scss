@@ -45,7 +45,7 @@ aside {
 
 footer {
     grid-area: footer;
-    border: 1px solid #AA45DD;
+    background-color: $base_color;
 }
 
 @media only screen and (max-width: 900px) {

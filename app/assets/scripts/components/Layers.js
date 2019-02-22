@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
+import MapIcon from '@material-ui/icons/map';
 
 import Layer from './Layer';
 
@@ -16,7 +16,7 @@ class Layers extends Component {
           <div className="sidebar_content">
             <nav className="nav nav--contained nav--vertical">
               <div className="nav__contents">
-                <List subheader={<ListSubheader>Settings</ListSubheader>}>
+                <List subheader={<ListSubheader>Layers</ListSubheader>}>
                   {layers.map(layer => (
                     <Layer key={layer.id} layer={layer} />
                   ))}

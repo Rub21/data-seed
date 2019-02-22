@@ -119,16 +119,6 @@ class Map extends React.Component {
         );
       }
     }
-
-    // /**
-    // * Hide and show layer
-    // */
-    // if (nextProps.vectorLayer) {
-    //     console.log('------------------------------------');
-    //     console.log(nextProps.vectorLayer);
-    //     console.log('------------------------------------');
-    //     this.map.setLayoutProperty(nextProps.vectorLayer.id, 'visibility', nextProps.vectorLayer.showLayer ? 'visible' : 'none');
-    // }
   }
 
   render() {
