@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import color from '@material-ui/core/colors/amber';
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <header>
         <div className="header-container">
