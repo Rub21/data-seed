@@ -55,14 +55,6 @@ export default {
       showLayer: true
     },
     {
-      name: ' Digi vivid',
-      id: 'digivivid',
-      type: 'tms',
-      url:
-        'https://a.tiles.mapbox.com/v4/digitalglobe.2lnpeioh/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpbWdrZjhlZjAwMnd0emtvNXYzYmFwZm4ifQ.5owPkJs5HMvoB8IQPyuwEw',
-      showLayer: true
-    },
-    {
       id: 'esri-world-imagery',
       name: 'Esri World Imagery',
       type: 'tms',
