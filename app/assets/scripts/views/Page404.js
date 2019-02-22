@@ -6,9 +6,7 @@ class Page404 extends Component {
     const location = this.props.location;
     return (
       <div>
-        <h2>
-          No match found for {location.pathname}
-        </h2>
+        <h2>No match found for {location.pathname}</h2>
       </div>
     );
   }

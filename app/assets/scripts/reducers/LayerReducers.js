@@ -1,4 +1,8 @@
-import { SET_ACTIVE_LAYER, CLEAR_ACTIVE_LAYER, ZOOM_TO_LAYER } from '../constants';
+import {
+  SET_ACTIVE_LAYER,
+  CLEAR_ACTIVE_LAYER,
+  ZOOM_TO_LAYER
+} from '../constants';
 
 export default function LayerReducer (state = {}, action) {
   switch (action.type) {

@@ -25,14 +25,15 @@ class Home extends Component {
      */
     const self = this;
 
-    axios.all(layers.map(layer => axios.get(layer.url)))
-      .then(axios.spread(function (...response) {
+    axios.all(layers.map(layer => axios.get(layer.url))).then(
+      axios.spread(function (...response) {
         for (let i = 0; i < response.length; i++) {
           layers[i].data = response[i].data;
           layers[i].bbox = bbox(response[i].data);
         }
         self.props.setLayers(layers);
-      }));
+      })
+    );
   }
 
   // toggleSidebar() {
@@ -43,7 +44,7 @@ class Home extends Component {
 
   render () {
     const classes = classNames({
-      'container': true,
+      container: true,
       'sidebar-collased': this.state.isSidebarCollased
     });
 
@@ -53,9 +54,8 @@ class Home extends Component {
         {/* sidebar-collased */}
         <Header />
         <Layers />
-        <Map></Map>
-        <footer>
-        </footer>
+        <Map />
+        <footer />
       </div>
     );
   }
@@ -69,4 +69,7 @@ const mapDispatchToProps = {
   setLayers
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

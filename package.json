@@ -21,7 +21,8 @@
     "build": "DS_ENV=production NODE_ENV=production gulp",
     "stage": "DS_ENV=staging NODE_ENV=staging gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
-    "test": "echo \"No tests\" && exit 0"
+    "test": "echo \"No tests\" && exit 0",
+    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 80 app/assets/scripts/*.js app/assets/scripts/*/*.js"
   },
   "engines": {
     "node": "8.x"
@@ -99,6 +100,7 @@
     "history": "^4.7.2",
     "lodash.defaultsdeep": "^4.6.0",
     "mapbox-gl": "^0.52.0",
+    "prettier": "^1.16.4",
     "react": "^16.7.0",
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.7.0",

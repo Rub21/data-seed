@@ -12,7 +12,7 @@ import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
 import { setLayers, HideShowLayers } from '../actions/LayersActions';
 
 class Layer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.zoomToLayer = this.zoomToLayer.bind(this);
     this.hideOrShowLayer = this.hideOrShowLayer.bind(this);
@@ -21,7 +21,7 @@ class Layer extends Component {
   /**
    * Set active a layer, it will zoom to the layer and display properties
    */
-  zoomToLayer() {
+  zoomToLayer () {
     const layer = this.props.layer;
     this.props.ZoomToLayer(layer.bbox);
   }
@@ -29,7 +29,7 @@ class Layer extends Component {
   /**
    *
    */
-  hideOrShowLayer() {
+  hideOrShowLayer () {
     let layers = this.props.layers;
     const layer = this.props.layer;
     for (let i = 0; i < layers.length; i++) {
@@ -40,9 +40,9 @@ class Layer extends Component {
     this.props.HideShowLayers(layers);
   }
 
-  render() {
+  render () {
     return (
-      <ListItem onClick={this.zoomToLayer} >
+      <ListItem onClick={this.zoomToLayer}>
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
@@ -64,10 +64,9 @@ Layer.propTypes = {
   SetActiveLayer: PropTypes.func.isRequired,
   ZoomToLayer: PropTypes.func.isRequired,
   HideShowLayers: PropTypes.func.isRequired
-
 };
 
-function mapStateToPops(state, ownProps) {
+function mapStateToPops (state, ownProps) {
   return {
     layers: state.layers
   };
@@ -78,4 +77,7 @@ const mapDispatchToProps = {
   HideShowLayers
 };
 
-export default connect(mapStateToPops, mapDispatchToProps)(Layer);
+export default connect(
+  mapStateToPops,
+  mapDispatchToProps
+)(Layer);

@@ -8,7 +8,7 @@ import List from '@material-ui/core/List';
 import Layer from './Layer';
 
 class Layers extends Component {
-  render() {
+  render () {
     const layers = this.props.layers;
     return (
       <nav>
@@ -18,7 +18,7 @@ class Layers extends Component {
               <div className="nav__contents">
                 <List subheader={<ListSubheader>Settings</ListSubheader>}>
                   {layers.map(layer => (
-                    <Layer key={layer.id} layer={layer}></Layer>
+                    <Layer key={layer.id} layer={layer} />
                   ))}
                 </List>
               </div>
@@ -34,11 +34,10 @@ Layers.propTypes = {
   layers: PropTypes.array.isRequired
 };
 
-function mapStateToPops(state, ownProps) {
+function mapStateToPops (state, ownProps) {
   return {
     layers: state.layers
   };
 }
 
 export default connect(mapStateToPops)(Layers);
-

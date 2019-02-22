@@ -11,7 +11,7 @@ export default class RouterComponent extends React.Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path='*' component={Page404} />
+          <Route path="*" component={Page404} />
         </Switch>
       </Router>
     );
