@@ -48,15 +48,11 @@ class Home extends Component {
     });
 
     const layers = this.props.layers;
-
-    console.log('----------------------HOME--------------');
-    console.log(layers);
-    console.log('------------------------------------');
     return (
       <div className={classes}>
         {/* sidebar-collased */}
         <Header />
-        <Layers layers={layers} />
+        <Layers />
         <Map></Map>
         <footer>
         </footer>

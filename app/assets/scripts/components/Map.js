@@ -54,6 +54,7 @@ class Map extends React.Component {
          * Set the layers on the map
          */
         const layers = nextProps.layers;
+
         for (let i = 0; i < layers.length; i++) {
             const layer = layers[i];
             if (!this.map.getSource(layer.id)) {
@@ -111,6 +112,8 @@ class Map extends React.Component {
 
                 this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
 
+            } else {
+                this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
             }
         }
 

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
+import { connect } from 'react-redux';
 
 import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
 
 import Layer from './Layer';
 
 class Layers extends Component {
-  render () {
+  render() {
     const layers = this.props.layers;
     return (
-
-      <sidebar>
+      <nav>
         <div className="sidebar_container">
           <div className="sidebar_content">
             <nav className="nav nav--contained nav--vertical">
@@ -25,10 +25,20 @@ class Layers extends Component {
             </nav>
           </div>
         </div>
-      </sidebar>
-
+      </nav>
     );
   }
 }
 
-export default Layers;
+Layers.propTypes = {
+  layers: PropTypes.array.isRequired
+};
+
+function mapStateToPops(state, ownProps) {
+  return {
+    layers: state.layers
+  };
+}
+
+export default connect(mapStateToPops)(Layers);
+

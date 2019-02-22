@@ -13,7 +13,7 @@ export const clearLayers = () => {
   };
 };
 
-export const hideShowLayers = layers => {
+export const HideShowLayers = layers => {
   return {
     type: HIDE_SHOW_LAYERS,
     layers: layers
