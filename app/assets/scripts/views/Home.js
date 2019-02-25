@@ -7,6 +7,7 @@ import bbox from '@turf/bbox';
 import Header from '../components/Header';
 import Layers from '../components/Layers';
 import Map from '../components/Map';
+import TMSLayers from '../components/TmsLayers';
 import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
 import { setTMSLayers } from '../actions/TmsLayersActions';
@@ -55,12 +56,15 @@ class Home extends Component {
 
     // const layers = this.props.layers;
     return (
-      <div className={classes}>
-        {/* sidebar-collased */}
-        <Header />
-        <Layers />
-        <Map />
-        <footer />
+      <div>
+        <div className={classes}>
+          {/* sidebar-collased */}
+          <Header />
+          <Layers />
+          <Map />
+          <footer />
+        </div>
+        <TMSLayers />
       </div>
     );
   }
