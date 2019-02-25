@@ -5,16 +5,7 @@ export default {
   mbtoken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q',
   mbstyle: 'mapbox://styles/devseed/cjoaeoh3g075d2rjh0ss9at1f',
   layers: [
-    // {
-    //   name: 'Road and buildings Tiles',
-    //   id: 'roadsandbuildingstiles',
-    //   type: 'vector',
-    //   color: '#BADA55',
-    //   display: 'polygon',
-    //   url:
-    //     'https://gist.githubusercontent.com/osmpe/75ca5b9649707274c0bc273062afb3ab/raw/f7d030ba0f4ae8fa8d6bba6e163dd100c3ff2d45/population_tiles.geojson',
-    //   showLayer: true
-    // },
+
     {
       name: 'Test area colombia',
       id: 'testArea',
@@ -47,14 +38,6 @@ export default {
     }
   ],
   tmsLayers: [
-    {
-      id: 'esri-world-imagery',
-      name: 'Esri World Imagery',
-      type: 'tms',
-      url:
-        'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      showLayer: true
-    },
     {
       name: ' openstreetmap',
       id: 'OpenStreetMap',
