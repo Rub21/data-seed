@@ -24,7 +24,7 @@ class Map extends React.Component {
      */
     const that = this;
     this.map.resize();
-    setTimeout(function() {
+    setTimeout(function () {
       that.map.resize();
     }, 100);
   }
@@ -52,6 +52,7 @@ class Map extends React.Component {
        */
 
       displayLayers(this.map, this.props);
+      this.map.resize();
     });
   }
 
