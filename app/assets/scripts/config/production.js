@@ -48,18 +48,18 @@ export default {
   ],
   tmsLayers: [
     {
-      name: ' openstreetmap',
-      id: 'OpenStreetMap',
-      type: 'tms',
-      url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      showLayer: true
-    },
-    {
       id: 'esri-world-imagery',
       name: 'Esri World Imagery',
       type: 'tms',
       url:
         'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      showLayer: true
+    },
+    {
+      name: ' openstreetmap',
+      id: 'OpenStreetMap',
+      type: 'tms',
+      url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
       showLayer: true
     }
   ]

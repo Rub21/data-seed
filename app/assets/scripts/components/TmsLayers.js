@@ -17,6 +17,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import { Fade } from '@material-ui/core';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import WifiIcon from '@material-ui/icons/Wifi';
+import BluetoothIcon from '@material-ui/icons/Bluetooth';
+
+import { HideShowTMSLayers } from '../actions/TmsLayersActions';
 
 class TmsLayers extends React.Component {
   constructor(props) {
@@ -29,18 +35,18 @@ class TmsLayers extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  // handleToggleLayers = value => () => {
-  //     const toggleLayer = {};
-  //     toggleLayer[value] = !this.state[value];
-  //     this.props.dispatch(displayLayersAction.displayLayersAction(toggleLayer));
-  //     this.setState(toggleLayer);
-  // };
+  handleToggleLayers(id, e) {
+    const tmsLayers = this.props.tmsLayers;
+    for (let i = 0; i < tmsLayers.length; i++) {
+      if (tmsLayers[i].id === id) {
+        tmsLayers[i].showLayer = !tmsLayers[i].showLayer;
+      }
+    }
+    this.props.HideShowTMSLayers(tmsLayers);
+  }
 
   handleToggle(event) {
     const { currentTarget } = event;
-    // console.log('------------------------------------');
-    // console.log(currentTarget);
-    // console.log('------------------------------------');
     this.setState(state => ({
       anchorEl: currentTarget,
       open: true
@@ -56,6 +62,7 @@ class TmsLayers extends React.Component {
 
   render() {
     const { open } = this.state;
+    const tmsLayers = this.props.tmsLayers;
     return (
       <div className="tmsLayersContainer">
         <Fab
@@ -72,18 +79,50 @@ class TmsLayers extends React.Component {
           open={open}
           anchorEl={this.state.anchorEl}
           transition
-          style={{ marginRight: 30, marginTop: -40 }}
+          style={{
+            marginRight: -240,
+            marginTop: -30,
+            width: 200,
+            maxWidth: 200
+          }}
         >
-          {({ TransitionProps }) => (
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Fade {...TransitionProps} timeout={350}>
-                <Paper>
-                  <div style={{ width: 200, height: 300 }}>
-                    <h1>Test Layers</h1>
-                  </div>
-                </Paper>
-              </Fade>
-            </ClickAwayListener>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              id="menu-list-grow"
+              style={{
+                transformOrigin: 'left bottom',
+                backgroundColor: 'rgba(255,255,255,0.9)'
+              }}
+            >
+              <ClickAwayListener onClickAway={this.handleClose}>
+                <Fade {...TransitionProps} timeout={350}>
+                  <Paper>
+                    <List>
+                      {tmsLayers.map(layer => (
+                        <ListItem key={layer.id}>
+                          {/* <ListItemIcon>
+                          <WifiIcon />
+                        </ListItemIcon> */}
+                          <ListItemText
+                            primary={layer.name}
+                            style={{ marginRight: 10 }}
+                          />
+                          <ListItemSecondaryAction>
+                            <Switch
+                              onChange={e =>
+                                this.handleToggleLayers(layer.id, e)
+                              }
+                              checked={layer.showLayer}
+                            />
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Paper>
+                </Fade>
+              </ClickAwayListener>
+            </Grow>
           )}
         </Popper>
       </div>
@@ -93,10 +132,15 @@ class TmsLayers extends React.Component {
 
 function mapStateToPops(state, ownProps) {
   return {
-    // displayLayers: state.displayLayers,
-    // home: state.home,
-    // item: state.item
+    tmsLayers: state.tmsLayers
   };
 }
 
-export default connect(mapStateToPops)(TmsLayers);
+const mapDispatchToProps = {
+  HideShowTMSLayers
+};
+
+export default connect(
+  mapStateToPops,
+  mapDispatchToProps
+)(TmsLayers);
