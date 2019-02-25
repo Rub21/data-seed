@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import { connect } from 'react-redux';
 
 import { mbtoken, mbstyle, environment } from '../config';
+import { displayLayers, displayTMSLayers } from './Map.layers';
+
 mapboxgl.accessToken = mbtoken;
 
 class Map extends React.Component {
@@ -20,10 +22,9 @@ class Map extends React.Component {
     /**
      * Extend the map in case hide the sidebar
      */
-
     const that = this;
     this.map.resize();
-    setTimeout(function() {
+    setTimeout(function () {
       that.map.resize();
     }, 100);
   }
@@ -39,6 +40,20 @@ class Map extends React.Component {
       center: [lng, lat],
       zoom
     });
+
+    this.map.on('load', () => {
+      /**
+       * Set TMS Layers on the map
+       */
+
+      displayTMSLayers(this.map, this.props);
+      /**
+       * Set TMS Layers on the map
+       */
+
+      displayLayers(this.map, this.props);
+      this.map.resize();
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,74 +64,30 @@ class Map extends React.Component {
       this.map.fitBounds(nextProps.bbox);
     }
 
-    /**
-     * Set the layers on the map
-     */
-    const layers = nextProps.layers;
-
-    for (let i = 0; i < layers.length; i++) {
-      const layer = layers[i];
-      if (!this.map.getSource(layer.id)) {
-        this.map.addSource(layer.id, {
-          type: 'geojson',
-          data: layer.data
-        });
-        if (layer.display === 'polygon') {
-          this.map.addLayer({
-            id: layer.id,
-            type: 'fill',
-            source: layer.id,
-            paint: {
-              'fill-color': layer.color,
-              'fill-outline-color': layer.color,
-              'fill-opacity': 0.5
-            }
-          });
-        } else if (layer.display === 'point') {
-          this.map.addLayer({
-            id: layer.id,
-            type: 'circle',
-            source: layer.id,
-            paint: {
-              // make circles larger as the user zooms from z12 to z22
-              'circle-radius': {
-                base: 1.75,
-                stops: [[12, 2], [22, 180]]
-              },
-              'circle-color': layer.color
-            }
-          });
-        } else if (layer.display === 'line') {
-          this.map.addLayer({
-            id: layer.id,
-            type: 'line',
-            source: layer.id,
-            layout: {
-              'line-join': 'round',
-              'line-cap': 'round'
-            },
-            paint: {
-              'line-color': layer.color,
-              'line-width': 2
-            }
-          });
+    if (nextProps.layers && nextProps.layers.length > 0) {
+      const layers = nextProps.layers;
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
+        if (this.map.getLayer(layer.id)) {
+          this.map.setLayoutProperty(
+            layer.id,
+            'visibility',
+            layer.showLayer ? 'visible' : 'none'
+          );
         }
+      }
+    }
 
-        /**
-         * Show or hide the Layer
-         */
-
-        this.map.setLayoutProperty(
-          layer.id,
-          'visibility',
-          layer.showLayer ? 'visible' : 'none'
-        );
-      } else {
-        this.map.setLayoutProperty(
-          layer.id,
-          'visibility',
-          layer.showLayer ? 'visible' : 'none'
-        );
+    if (nextProps.tmsLayers && nextProps.tmsLayers.length > 0) {
+      for (let j = 0; j < nextProps.tmsLayers.length; j++) {
+        const tmsLayer = nextProps.tmsLayers[j];
+        if (this.map.getLayer(tmsLayer.id)) {
+          this.map.setLayoutProperty(
+            tmsLayer.id,
+            'visibility',
+            tmsLayer.showLayer ? 'visible' : 'none'
+          );
+        }
       }
     }
   }
@@ -129,7 +100,8 @@ class Map extends React.Component {
 function mapStateToPops(state, ownProps) {
   return {
     layers: state.layers,
-    bbox: state.bbox
+    bbox: state.bbox,
+    tmsLayers: state.tmsLayers
   };
 }
 

@@ -7,11 +7,13 @@ import bbox from '@turf/bbox';
 import Header from '../components/Header';
 import Layers from '../components/Layers';
 import Map from '../components/Map';
-import { layers } from '../config';
+import TMSLayers from '../components/TmsLayers';
+import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
+import { setTMSLayers } from '../actions/TmsLayersActions';
 
 class Home extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       isSidebarCollased: false
@@ -19,14 +21,13 @@ class Home extends Component {
     // this.toggleSidebar = this.toggleSidebar.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     /**
      * Load the vector files
      */
     const self = this;
-
     axios.all(layers.map(layer => axios.get(layer.url))).then(
-      axios.spread(function (...response) {
+      axios.spread(function(...response) {
         for (let i = 0; i < response.length; i++) {
           layers[i].data = response[i].data;
           layers[i].bbox = bbox(response[i].data);
@@ -34,6 +35,11 @@ class Home extends Component {
         self.props.setLayers(layers);
       })
     );
+
+    /**
+     * Load the TMS layers
+     */
+    this.props.setTMSLayers(tmsLayers);
   }
 
   // toggleSidebar() {
@@ -42,34 +48,38 @@ class Home extends Component {
   //   });
   // }
 
-  render () {
+  render() {
     const classes = classNames({
       container: true,
       'sidebar-collased': this.state.isSidebarCollased
     });
 
-    const layers = this.props.layers;
+    // const layers = this.props.layers;
     return (
-      <div className={classes}>
-        {/* sidebar-collased */}
-        <Header />
-        <Layers />
-        <Map />
-        <footer />
+      <div>
+        <div className={classes}>
+          {/* sidebar-collased */}
+          <Header />
+          <Layers />
+          <Map />
+          <footer />
+        </div>
+        <TMSLayers />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  layers: state.layers
-});
+// const mapStateToProps = state => ({
+//   layers: state.layers
+// });
 
 const mapDispatchToProps = {
-  setLayers
+  setLayers,
+  setTMSLayers
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Home);

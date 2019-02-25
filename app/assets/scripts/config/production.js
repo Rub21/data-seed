@@ -11,7 +11,9 @@ export default {
     //   type: 'vector',
     //   color: '#BADA55',
     //   display: 'polygon',
-    //   url: 'https://gist.githubusercontent.com/osmpe/75ca5b9649707274c0bc273062afb3ab/raw/f7d030ba0f4ae8fa8d6bba6e163dd100c3ff2d45/population_tiles.geojson'
+    //   url:
+    //     'https://gist.githubusercontent.com/osmpe/75ca5b9649707274c0bc273062afb3ab/raw/f7d030ba0f4ae8fa8d6bba6e163dd100c3ff2d45/population_tiles.geojson',
+    //   showLayer: true
     // },
     {
       name: 'Test area colombia',
@@ -35,13 +37,30 @@ export default {
     },
     {
       name: 'Woredas',
-      id: 'Woredas',
+      id: 'woredas',
       type: 'vector',
       color: '#c300ff',
       display: 'polygon',
       url:
         'https://gist.githubusercontent.com/Rub21/9d8546a6bc70d0de781cf22d20bd52ce/raw/b162c035b3f2f353a3f003122ccd0f34e93f7d40/woredas.geojson',
-      showLayer: false
+      showLayer: true
+    }
+  ],
+  tmsLayers: [
+    {
+      id: 'esri-world-imagery',
+      name: 'Esri World Imagery',
+      type: 'tms',
+      url:
+        'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      showLayer: true
+    },
+    {
+      name: ' openstreetmap',
+      id: 'OpenStreetMap',
+      type: 'tms',
+      url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      showLayer: true
     }
   ]
 };

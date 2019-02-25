@@ -6,7 +6,7 @@ import Home from './views/Home';
 import Page404 from './views/Page404';
 
 export default class RouterComponent extends React.Component {
-  render () {
+  render() {
     return (
       <Router history={history}>
         <Switch>
