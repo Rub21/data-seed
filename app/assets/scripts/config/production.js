@@ -82,7 +82,7 @@ export default {
       name: 'Monserrat',
       id: '8',
       type: 'vector',
-      color: '#c300ff',
+      color: '#ffc107',
       display: 'polygon',
       url:
         'https://gist.githubusercontent.com/osmpe/4810d26c09f8ab2c1641b6982f0bb027/raw/e751bd97a7bbd0b3ad43ef37f1febeba9ae8f8e0/montserrat-poly.geojson',

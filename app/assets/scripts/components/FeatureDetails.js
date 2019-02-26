@@ -8,14 +8,20 @@ class FeatureDetails extends Component {
   }
 
   render() {
+    const properties = this.props.feature.properties;
     return (
       // <aside >
       <div className="asideContent">
-        <p className="dropcap">
-          The dropcap is the capitalized first letter of a paragraph. It’s not for every occasion, but when the
-          post/page starts with a paragraph that spans at least two full lines it should be added as it has a big impact
-          on the look and feel of the post.
-        </p>
+        <ul>
+          {Object.keys(properties).map((keyName, i) => (
+            <li key={i}>
+              <span className="label label--success">
+                <strong> {keyName}: </strong>
+                {properties[keyName]}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
@@ -25,7 +31,7 @@ FeatureDetails.propTypes = {};
 
 function mapStateToPops(state, ownProps) {
   return {
-    layers: state.layers
+    feature: state.feature
   };
 }
 const mapDispatchToProps = {};

@@ -6,6 +6,7 @@ import { mbtoken, mbstyle, environment } from '../config';
 // import { displayLayers, displayTMSLayers } from './Map.layers';
 
 import { polygonStyle, lineStyle, pointStyle, tmsStyle } from './../utils/mapStyles';
+import { SetActiveFeature } from '../actions/FeatureActions';
 
 mapboxgl.accessToken = mbtoken;
 
@@ -71,9 +72,7 @@ class Map extends React.Component {
 
           this.map.on('click', layer.id, function(e) {
             self.map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
-            console.log('------------------------------------');
-            console.log(e.features[0]);
-            console.log('------------------------------------');
+            self.props.SetActiveFeature(e.features[0]);
           });
 
           /**
@@ -141,4 +140,11 @@ function mapStateToPops(state, ownProps) {
   };
 }
 
-export default connect(mapStateToPops)(Map);
+const mapDispatchToProps = {
+  SetActiveFeature
+};
+
+export default connect(
+  mapStateToPops,
+  mapDispatchToProps
+)(Map);
