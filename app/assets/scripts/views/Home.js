@@ -8,6 +8,8 @@ import Header from '../components/Header';
 import Layers from '../components/Layers';
 import Map from '../components/Map';
 import TMSLayers from '../components/TmsLayers';
+import FetureDetails from '../components/FetureDetails';
+
 import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
 import { setTMSLayers } from '../actions/TmsLayersActions';
@@ -65,6 +67,7 @@ class Home extends Component {
           <footer />
         </div>
         <TMSLayers />
+        <FetureDetails />
       </div>
     );
   }

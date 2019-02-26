@@ -15,12 +15,7 @@ class Header extends Component {
               </a>
             </li>
             <li className="nav__tab" role="presentation">
-              <a
-                href="#"
-                className="nav__link nav__link--active"
-                title="View item"
-                role="tab"
-              >
+              <a href="#" className="nav__link nav__link--active" title="View item" role="tab">
                 <span>About</span>
               </a>
             </li>

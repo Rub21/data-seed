@@ -1,0 +1,16 @@
+
+.asideContent {
+    position: absolute;
+    z-index: 99999;
+    top: 50px;
+    right: 5px; 
+    float: right;
+    opacity: 0.9;
+    width: 250px;
+    height: calc(100% - $header-height);
+    margin-bottom: 20px;
+    background: #ffffff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 10px;
+}

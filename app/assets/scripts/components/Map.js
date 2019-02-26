@@ -3,7 +3,9 @@ import mapboxgl from 'mapbox-gl';
 import { connect } from 'react-redux';
 
 import { mbtoken, mbstyle, environment } from '../config';
-import { displayLayers, displayTMSLayers } from './Map.layers';
+// import { displayLayers, displayTMSLayers } from './Map.layers';
+
+import { polygonStyle, lineStyle, pointStyle, tmsStyle } from './../utils/mapStyles';
 
 mapboxgl.accessToken = mbtoken;
 
@@ -24,7 +26,7 @@ class Map extends React.Component {
      */
     const that = this;
     this.map.resize();
-    setTimeout(function () {
+    setTimeout(function() {
       that.map.resize();
     }, 100);
   }
@@ -46,12 +48,54 @@ class Map extends React.Component {
        * Set TMS Layers on the map
        */
 
-      displayTMSLayers(this.map, this.props);
+      const layers = this.props.layers;
+
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
+        if (!this.map.getSource(layer.id)) {
+          this.map.addSource(layer.id, {
+            type: 'geojson',
+            data: layer.data
+          });
+          if (layer.display === 'polygon') {
+            this.map.addLayer(polygonStyle(layer));
+          } else if (layer.display === 'point') {
+            this.map.addLayer(pointStyle(layer));
+          } else if (layer.display === 'line') {
+            this.map.addLayer(lineStyle(layer));
+          }
+          const self = this;
+          this.map.on('mousemove', layer.id, function(e) {
+            self.map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
+          });
+
+          this.map.on('click', layer.id, function(e) {
+            self.map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
+            console.log('------------------------------------');
+            console.log(e.features[0]);
+            console.log('------------------------------------');
+          });
+
+          /**
+           * Show or hide the Layer
+           */
+
+          this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
+        }
+      }
       /**
        * Set TMS Layers on the map
        */
+      const tmsLayers = this.props.tmsLayers;
 
-      displayLayers(this.map, this.props);
+      for (let j = 0; j < tmsLayers.length; j++) {
+        const tmsLayer = tmsLayers[j];
+        if (!this.map.getLayer(tmsLayer.id)) {
+          this.map.addLayer(tmsStyle(tmsLayer));
+          this.map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
+        }
+      }
+
       this.map.resize();
     });
   }
@@ -69,11 +113,7 @@ class Map extends React.Component {
       for (let i = 0; i < layers.length; i++) {
         const layer = layers[i];
         if (this.map.getLayer(layer.id)) {
-          this.map.setLayoutProperty(
-            layer.id,
-            'visibility',
-            layer.showLayer ? 'visible' : 'none'
-          );
+          this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
         }
       }
     }
@@ -82,11 +122,7 @@ class Map extends React.Component {
       for (let j = 0; j < nextProps.tmsLayers.length; j++) {
         const tmsLayer = nextProps.tmsLayers[j];
         if (this.map.getLayer(tmsLayer.id)) {
-          this.map.setLayoutProperty(
-            tmsLayer.id,
-            'visibility',
-            tmsLayer.showLayer ? 'visible' : 'none'
-          );
+          this.map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
         }
       }
     }

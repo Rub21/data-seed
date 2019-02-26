@@ -1,3 +1,6 @@
+import mapboxgl from 'mapbox-gl';
+import React from 'react';
+
 export const displayLayers = (map, props) => {
   const layers = props.layers;
   for (let i = 0; i < layers.length; i++) {
@@ -48,21 +51,29 @@ export const displayLayers = (map, props) => {
         });
       }
 
+      map.on('mousemove', layer.id, function(e) {
+        map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
+      });
+
+      map.on('click', layer.id, function(e) {
+        map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
+
+        console.log('------------------------------------');
+        console.log(e.features[0]);
+        console.log('------------------------------------');
+        // new mapboxgl.Popup()
+        // .setLngLat(e.lngLat)
+        // .setHTML(e.features[0].properties.name)
+        // .addTo(map);
+      });
+
       /**
        * Show or hide the Layer
        */
 
-      map.setLayoutProperty(
-        layer.id,
-        'visibility',
-        layer.showLayer ? 'visible' : 'none'
-      );
+      map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
     } else {
-      map.setLayoutProperty(
-        layer.id,
-        'visibility',
-        layer.showLayer ? 'visible' : 'none'
-      );
+      map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
     }
   }
 };
@@ -82,17 +93,9 @@ export const displayTMSLayers = (map, props) => {
         },
         paint: {}
       });
-      map.setLayoutProperty(
-        tmsLayer.id,
-        'visibility',
-        tmsLayer.showLayer ? 'visible' : 'none'
-      );
+      map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
     } else {
-      map.setLayoutProperty(
-        tmsLayer.id,
-        'visibility',
-        tmsLayer.showLayer ? 'visible' : 'none'
-      );
+      map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
     }
   }
 };

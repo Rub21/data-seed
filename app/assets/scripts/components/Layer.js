@@ -44,14 +44,11 @@ class Layer extends Component {
     return (
       <ListItem onClick={this.zoomToLayer}>
         <ListItemIcon>
-          <MapIcon />
+          <MapIcon style={{ color: this.props.layer.color }} />
         </ListItemIcon>
         <ListItemText primary={this.props.layer.name} />
         <ListItemSecondaryAction>
-          <Switch
-            onChange={this.hideOrShowLayer}
-            checked={this.props.layer.showLayer}
-          />
+          <Switch onChange={this.hideOrShowLayer} checked={this.props.layer.showLayer} />
         </ListItemSecondaryAction>
       </ListItem>
     );

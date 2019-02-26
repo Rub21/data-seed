@@ -22,7 +22,7 @@
     "stage": "DS_ENV=staging NODE_ENV=staging gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
     "test": "echo \"No tests\" && exit 0",
-    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 80 app/assets/scripts/*.js app/assets/scripts/*/*.js"
+    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 120 app/assets/scripts/*.js app/assets/scripts/*/*.js"
   },
   "engines": {
     "node": "8.x"

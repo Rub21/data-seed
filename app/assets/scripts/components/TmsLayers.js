@@ -104,17 +104,9 @@ class TmsLayers extends React.Component {
                           {/* <ListItemIcon>
                           <WifiIcon />
                         </ListItemIcon> */}
-                          <ListItemText
-                            primary={layer.name}
-                            style={{ marginRight: 10 }}
-                          />
+                          <ListItemText primary={layer.name} style={{ marginRight: 10 }} />
                           <ListItemSecondaryAction>
-                            <Switch
-                              onChange={e =>
-                                this.handleToggleLayers(layer.id, e)
-                              }
-                              checked={layer.showLayer}
-                            />
+                            <Switch onChange={e => this.handleToggleLayers(layer.id, e)} checked={layer.showLayer} />
                           </ListItemSecondaryAction>
                         </ListItem>
                       ))}
