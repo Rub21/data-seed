@@ -1,6 +1,6 @@
 import { SET_LAYERS, CLEAR_LAYERS, HIDE_SHOW_LAYERS } from '../constants';
 
-export default function LayersReducer(state = [], action) {
+export default function LayersReducer (state = [], action) {
   switch (action.type) {
     case SET_LAYERS:
       return action.layers;

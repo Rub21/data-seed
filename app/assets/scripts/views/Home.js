@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -9,6 +10,7 @@ import Layers from '../components/Layers';
 import Map from '../components/Map';
 import TMSLayers from '../components/TmsLayers';
 import FeatureDetails from '../components/FeatureDetails';
+import Footer from '../components/Footer';
 
 import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
@@ -16,7 +18,7 @@ import { setTMSLayers } from '../actions/TmsLayersActions';
 import { ZoomToLayer } from '../actions/LayerActions';
 
 class Home extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       isSidebarCollased: false
@@ -24,14 +26,14 @@ class Home extends Component {
     // this.toggleSidebar = this.toggleSidebar.bind(this);
   }
 
-  componentWillMount() {
+  componentWillMount () {
     /**
      * Load the vector files
      */
     const self = this;
     let globalBbox = featureCollection([]);
     axios.all(layers.map(layer => axios.get(layer.url))).then(
-      axios.spread(function(...response) {
+      axios.spread(function (...response) {
         for (let i = 0; i < response.length; i++) {
           layers[i].data = response[i].data;
           layers[i].bbox = bbox(response[i].data);
@@ -54,7 +56,7 @@ class Home extends Component {
   //   });
   // }
 
-  render() {
+  render () {
     const classes = classNames({
       container: true,
       'sidebar-collased': this.state.isSidebarCollased
@@ -68,7 +70,7 @@ class Home extends Component {
           <Header />
           <Layers />
           <Map />
-          <footer />
+          <Footer />
         </div>
         <TMSLayers />
         <FeatureDetails />
@@ -77,9 +79,11 @@ class Home extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   layers: state.layers
-// });
+const mapStateToProps = state => ({
+  setLayers: PropTypes.func,
+  setTMSLayers: PropTypes.func,
+  ZoomToLayer: PropTypes.func
+});
 
 const mapDispatchToProps = {
   setLayers,
@@ -88,6 +92,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home);

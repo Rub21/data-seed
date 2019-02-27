@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class FeatureDetails extends Component {
-  render() {
+  render () {
     const properties = this.props.feature.properties;
     let propertiesList = Object.keys(properties).map((keyName, i) => {
       let item = {};
       item[keyName] = properties[keyName];
       return item;
     });
-    propertiesList = propertiesList.sort(function(a, b) {
+    propertiesList = propertiesList.sort(function (a, b) {
       const keyA = Object.keys(a)[0];
       const keyB = Object.keys(b)[0];
       const nameA = keyA.toLowerCase();
@@ -42,9 +42,11 @@ class FeatureDetails extends Component {
   }
 }
 
-FeatureDetails.propTypes = {};
+FeatureDetails.propTypes = {
+  feature: PropTypes.object.isRequired
+};
 
-function mapStateToPops(state, ownProps) {
+function mapStateToPops (state, ownProps) {
   return {
     feature: state.feature
   };

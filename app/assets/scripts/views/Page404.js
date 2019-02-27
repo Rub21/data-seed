@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Page404 extends Component {
-  render() {
+  render () {
     const location = this.props.location;
     return (
       <div>

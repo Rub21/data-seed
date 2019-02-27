@@ -31,32 +31,34 @@ nav {
 
 main {
     grid-area: content;
-    background-color:#75CFF0;
+    background-color: #75CFF0;
     margin: 0px;
     padding: 0px;
     max-width: calc(100% - $aside-width);
 }
 
-
 // aside {
 //     grid-area: side;
 //     border: 1px solid #BADA55;
 // }
-
 footer {
-    grid-area: footer;
-    background-color: $base_color;
+    grid-area: footer; // align-self: center;
+    // justify-self: center;
+    background-color: $base_color; // align-content: center;
+}
+
+footer p {
+    margin: auto;
+    line-height: $footer-height;
+    width: 250px;
+    color: #dddddd;
 }
 
 @media only screen and (max-width: 900px) {
     .container {
         grid-template-columns: $nav-width auto;
         grid-template-rows: $header-height 5fr 1fr $footer-height;
-        grid-template-areas:
-         "header header" 
-         "nav content" 
-         "nav content" 
-         "nav footer";
+        grid-template-areas: "header header" "nav content" "nav content" "nav footer";
     }
     .container.sidebar-collased {
         grid-template-columns: $nav-width-collased auto; // grid-gap: 5px;
