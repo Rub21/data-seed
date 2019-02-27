@@ -117,52 +117,45 @@ export default {
       url:
         'https://gist.githubusercontent.com/osmpe/e88a9dc65db4230d668b45765092ac82/raw/7bae2fcca026a003781daefcf1719850116e75bd/barbuda-poly.geojson',
       showLayer: true
-    },
-    {
-      name: 'test',
-      id: '12',
-      type: 'vector',
-      color: '#c300ff',
-      display: 'polygon',
-      url:
-        'https://gist.githubusercontent.com/osmpe/186786b287257919d720d70cb46744e8/raw/b9327fb19eb430e0c3cdad6682a5f8751db2f262/test.geojson',
-      showLayer: true
-    },
-    {
-      name: 'Points',
-      id: '13',
-      type: 'vector',
-      color: '#c300ff',
-      display: 'point',
-      url:
-        'https://gist.githubusercontent.com/osmpe/c98c38dc30929c6ac8e85c71be80527a/raw/47bd536d971cd642fbbcf549ea03dd9aa04fb6e2/map.geojson',
-      showLayer: true
-    },
-    {
-      name: 'Line',
-      id: '14',
-      type: 'vector',
-      color: '#c23569',
-      display: 'line',
-      url:
-        'https://gist.githubusercontent.com/osmpe/3ad1707bf04789599c76e95d7a271fff/raw/0c6ec3b85b976f63207ef58c8a1e7eb30ef150b7/map.geojson',
-      showLayer: true
     }
+    // {
+    //   name: 'test',
+    //   id: '12',
+    //   type: 'vector',
+    //   color: '#c300ff',
+    //   display: 'polygon',
+    //   url:
+    //     'https://gist.githubusercontent.com/osmpe/186786b287257919d720d70cb46744e8/raw/b9327fb19eb430e0c3cdad6682a5f8751db2f262/test.geojson',
+    //   showLayer: true
+    // },
+    // {
+    //   name: 'Points',
+    //   id: '13',
+    //   type: 'vector',
+    //   color: '#c300ff',
+    //   display: 'point',
+    //   url:
+    //     'https://gist.githubusercontent.com/osmpe/c98c38dc30929c6ac8e85c71be80527a/raw/47bd536d971cd642fbbcf549ea03dd9aa04fb6e2/map.geojson',
+    //   showLayer: true
+    // },
+    // {
+    //   name: 'Line',
+    //   id: '14',
+    //   type: 'vector',
+    //   color: '#c23569',
+    //   display: 'line',
+    //   url:
+    //     'https://gist.githubusercontent.com/osmpe/3ad1707bf04789599c76e95d7a271fff/raw/0c6ec3b85b976f63207ef58c8a1e7eb30ef150b7/map.geojson',
+    //   showLayer: true
+    // }
   ],
   tmsLayers: [
     {
-      id: 'esri-world-imagery',
-      name: 'Esri World Imagery',
+      name: ' openstreetmap',
+      id: 'OpenStreetMap',
       type: 'tms',
-      url: 'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      showLayer: true
+      url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      showLayer: false
     }
-    // {
-    //   name: ' openstreetmap',
-    //   id: 'OpenStreetMap',
-    //   type: 'tms',
-    //   url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //   showLayer: true
-    // }
   ]
 };

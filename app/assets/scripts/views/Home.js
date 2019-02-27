@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import bbox from '@turf/bbox';
+import { bbox, bboxPolygon, featureCollection } from '@turf/turf';
 
 import Header from '../components/Header';
 import Layers from '../components/Layers';
@@ -13,6 +13,7 @@ import FeatureDetails from '../components/FeatureDetails';
 import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
 import { setTMSLayers } from '../actions/TmsLayersActions';
+import { ZoomToLayer } from '../actions/LayerActions';
 
 class Home extends Component {
   constructor(props) {
@@ -28,13 +29,16 @@ class Home extends Component {
      * Load the vector files
      */
     const self = this;
+    let globalBbox = featureCollection([]);
     axios.all(layers.map(layer => axios.get(layer.url))).then(
       axios.spread(function(...response) {
         for (let i = 0; i < response.length; i++) {
           layers[i].data = response[i].data;
           layers[i].bbox = bbox(response[i].data);
+          globalBbox.features.push(bboxPolygon(layers[i].bbox));
         }
         self.props.setLayers(layers);
+        self.props.ZoomToLayer(bbox(globalBbox));
       })
     );
 
@@ -79,7 +83,8 @@ class Home extends Component {
 
 const mapDispatchToProps = {
   setLayers,
-  setTMSLayers
+  setTMSLayers,
+  ZoomToLayer
 };
 
 export default connect(

@@ -43,26 +43,20 @@ class Layer extends Component {
     this.props.HideShowLayers(layers);
   }
 
+  typeIcon(display) {
+    const style = { color: this.props.layer.color, width: '16px' };
+    if (display === 'line') {
+      return <ShowChart style={style} />;
+    } else if (display === 'point') {
+      return <ScatterPlot style={style} />;
+    } else {
+      return <Widgets style={style} />;
+    }
+  }
   render() {
     return (
       <ListItem onClick={this.zoomToLayer}>
-        <ListItemIcon>
-          {this.props.layer.display === 'line' ? (
-            <ShowChart style={{ color: this.props.layer.color, width: '16px' }} />
-          ) : (
-            ''
-          )}
-          {this.props.layer.display === 'polygon' ? (
-            <Widgets style={{ color: this.props.layer.color, width: '16px' }} />
-          ) : (
-            ''
-          )}
-          {this.props.layer.display === 'point' ? (
-            <ScatterPlot style={{ color: this.props.layer.color, width: '16px' }} />
-          ) : (
-            ''
-          )}
-        </ListItemIcon>
+        <ListItemIcon>{this.typeIcon(this.props.layer.display)}</ListItemIcon>
         <ListItemText style={{ paddingLeft: '1px', paddingRight: '1px' }} primary={this.props.layer.name} />
         <ListItemSecondaryAction>
           <Switch onChange={this.hideOrShowLayer} checked={this.props.layer.showLayer} />
