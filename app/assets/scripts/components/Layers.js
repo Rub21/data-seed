@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import Layer from './Layer';
 
 class Layers extends Component {
-  render() {
+  render () {
     const layers = this.props.layers;
     return (
       <nav>
@@ -32,7 +32,7 @@ Layers.propTypes = {
   layers: PropTypes.array.isRequired
 };
 
-function mapStateToPops(state, ownProps) {
+function mapStateToPops (state, ownProps) {
   return {
     layers: state.layers
   };

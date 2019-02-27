@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Switch from '@material-ui/core/Switch';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import MapIcon from '@material-ui/icons/Map';
 import ShowChart from '@material-ui/icons/ShowChart';
 import Widgets from '@material-ui/icons/Widgets';
 import ScatterPlot from '@material-ui/icons/ScatterPlot';
-import classNames from 'classnames';
 
 import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
-import { setLayers, HideShowLayers } from '../actions/LayersActions';
+import { HideShowLayers } from '../actions/LayersActions';
 
 class Layer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.zoomToLayer = this.zoomToLayer.bind(this);
     this.hideOrShowLayer = this.hideOrShowLayer.bind(this);
@@ -25,7 +22,7 @@ class Layer extends Component {
   /**
    * Set active a layer, it will zoom to the layer and display properties
    */
-  zoomToLayer() {
+  zoomToLayer () {
     const layer = this.props.layer;
     this.props.ZoomToLayer(layer.bbox);
   }
@@ -33,7 +30,7 @@ class Layer extends Component {
   /**
    *
    */
-  hideOrShowLayer() {
+  hideOrShowLayer () {
     let layers = this.props.layers;
     const layer = this.props.layer;
     for (let i = 0; i < layers.length; i++) {
@@ -44,7 +41,7 @@ class Layer extends Component {
     this.props.HideShowLayers(layers);
   }
 
-  typeIcon(display) {
+  typeIcon (display) {
     const style = { color: this.props.layer.color, width: '16px' };
     if (display === 'line') {
       return <ShowChart style={style} />;
@@ -54,13 +51,8 @@ class Layer extends Component {
       return <Widgets style={style} />;
     }
   }
-  render() {
+  render () {
     // const
-    const classes = classNames({
-      form__option: true,
-      'form__option--checked': this.props.layer.showLayer,
-      'form__option--switch': true
-    });
 
     return (
       <ListItem onClick={this.zoomToLayer}>
@@ -97,7 +89,7 @@ Layer.propTypes = {
   HideShowLayers: PropTypes.func.isRequired
 };
 
-function mapStateToPops(state, ownProps) {
+function mapStateToPops (state, ownProps) {
   return {
     layers: state.layers
   };

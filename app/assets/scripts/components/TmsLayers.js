@@ -11,21 +11,13 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
 import { Fade } from '@material-ui/core';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import WifiIcon from '@material-ui/icons/Wifi';
-import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
 import { HideShowTMSLayers } from '../actions/TmsLayersActions';
 
 class TmsLayers extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       anchorEl: null,
@@ -35,7 +27,7 @@ class TmsLayers extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleToggleLayers(id, e) {
+  handleToggleLayers (id, e) {
     const tmsLayers = this.props.tmsLayers;
     for (let i = 0; i < tmsLayers.length; i++) {
       if (tmsLayers[i].id === id) {
@@ -45,7 +37,7 @@ class TmsLayers extends React.Component {
     this.props.HideShowTMSLayers(tmsLayers);
   }
 
-  handleToggle(event) {
+  handleToggle (event) {
     const { currentTarget } = event;
     this.setState(state => ({
       anchorEl: currentTarget,
@@ -53,14 +45,14 @@ class TmsLayers extends React.Component {
     }));
   }
 
-  handleClose(event) {
+  handleClose (event) {
     if (this.state.anchorEl.contains(event.target)) {
       return;
     }
     this.setState({ open: false });
   }
 
-  render() {
+  render () {
     const { open } = this.state;
     const tmsLayers = this.props.tmsLayers;
     return (
@@ -122,7 +114,12 @@ class TmsLayers extends React.Component {
   }
 }
 
-function mapStateToPops(state, ownProps) {
+TmsLayers.propTypes = {
+  tmsLayers: PropTypes.array.isRequired,
+  HideShowTMSLayers: PropTypes.func.isRequired
+};
+
+function mapStateToPops (state, ownProps) {
   return {
     tmsLayers: state.tmsLayers
   };

@@ -1,6 +1,6 @@
 import { SET_ACTIVE_FEATURE, CLEAR_FEATURE, ZOOM_TO_FEATURE } from '../constants';
 
-export default function FeatureReducer(state = { properties: {} }, action) {
+export default function FeatureReducer (state = { properties: {} }, action) {
   switch (action.type) {
     case SET_ACTIVE_FEATURE:
       return action.feature;
