@@ -7,6 +7,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import MapIcon from '@material-ui/icons/Map';
+import ShowChart from '@material-ui/icons/ShowChart';
+import Widgets from '@material-ui/icons/Widgets';
+import ScatterPlot from '@material-ui/icons/ScatterPlot';
 
 import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
 import { setLayers, HideShowLayers } from '../actions/LayersActions';
@@ -44,7 +47,21 @@ class Layer extends Component {
     return (
       <ListItem onClick={this.zoomToLayer}>
         <ListItemIcon>
-          <MapIcon style={{ color: this.props.layer.color }} />
+          {this.props.layer.display === 'line' ? (
+            <ShowChart style={{ color: this.props.layer.color, width: '16px' }} />
+          ) : (
+            ''
+          )}
+          {this.props.layer.display === 'polygon' ? (
+            <Widgets style={{ color: this.props.layer.color, width: '16px' }} />
+          ) : (
+            ''
+          )}
+          {this.props.layer.display === 'point' ? (
+            <ScatterPlot style={{ color: this.props.layer.color, width: '16px' }} />
+          ) : (
+            ''
+          )}
         </ListItemIcon>
         <ListItemText style={{ paddingLeft: '1px', paddingRight: '1px' }} primary={this.props.layer.name} />
         <ListItemSecondaryAction>

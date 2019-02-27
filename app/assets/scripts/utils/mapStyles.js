@@ -7,11 +7,12 @@ export const polygonStyle = layer => {
       'fill-color': layer.color,
       'fill-outline-color': layer.color,
       'fill-opacity': 0.5
-    }
+    },
+    filter: ['==', ['geometry-type'], 'Polygon']
   };
 };
 
-export const lineStyle = layer => {
+export const pointStyle = layer => {
   return {
     id: layer.id,
     type: 'circle',
@@ -27,7 +28,7 @@ export const lineStyle = layer => {
   };
 };
 
-export const pointStyle = layer => {
+export const lineStyle = layer => {
   return {
     id: layer.id,
     type: 'line',
@@ -56,17 +57,30 @@ export const tmsStyle = tmsLayer => {
   };
 };
 
-export const highlightStyle = {
-  id: 'highlight-feature',
+export const highlightStyleLine = {
+  id: 'highlight-feature-line',
   type: 'line',
-  source: 'highlight-feature',
+  source: 'highlight-feature-line',
   layout: {
     'line-cap': 'round',
     'line-join': 'round'
   },
   paint: {
     'line-color': '#eeff00',
-    'line-width': 10,
+    'line-width': 6,
     'line-opacity': 0.4
+  }
+};
+
+export const highlightStylePoint = {
+  id: 'highlight-feature-point',
+  type: 'circle',
+  source: 'highlight-feature-point',
+  paint: {
+    'circle-radius': {
+      base: 2,
+      stops: [[12, 2], [22, 180]]
+    },
+    'circle-color': '#eeff00'
   }
 };

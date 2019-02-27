@@ -6,7 +6,14 @@ import { bbox, centroid, featureCollection } from '@turf/turf';
 import { mbtoken, mbstyle, environment } from '../config';
 // import { displayLayers, displayTMSLayers } from './Map.layers';
 
-import { polygonStyle, lineStyle, pointStyle, tmsStyle, highlightStyle } from './../utils/mapStyles';
+import {
+  polygonStyle,
+  lineStyle,
+  pointStyle,
+  tmsStyle,
+  highlightStyleLine,
+  highlightStylePoint
+} from './../utils/mapStyles';
 import { SetActiveFeature } from '../actions/FeatureActions';
 
 mapboxgl.accessToken = mbtoken;
@@ -105,11 +112,16 @@ class Map extends React.Component {
       /**
        * Layer highlight layer
        */
-      this.map.addSource('highlight-feature', {
+      this.map.addSource('highlight-feature-line', {
         type: 'geojson',
         data: featureCollection([])
       });
-      this.map.addLayer(highlightStyle);
+      this.map.addSource('highlight-feature-point', {
+        type: 'geojson',
+        data: featureCollection([])
+      });
+      this.map.addLayer(highlightStyleLine);
+      this.map.addLayer(highlightStylePoint);
 
       this.map.resize();
     });
@@ -119,10 +131,9 @@ class Map extends React.Component {
     /**
      * Zoom to layer
      */
-    if (nextProps.bbox) {
+    if (nextProps.bbox && this.props.bbox && this.props.bbox[0] !== nextProps.bbox[0]) {
       this.map.fitBounds(nextProps.bbox);
     }
-
     if (nextProps.layers && nextProps.layers.length > 0) {
       const layers = nextProps.layers;
       for (let i = 0; i < layers.length; i++) {
@@ -143,7 +154,8 @@ class Map extends React.Component {
     }
 
     if (nextProps.feature && nextProps.feature.geometry) {
-      this.map.getSource('highlight-feature').setData(featureCollection([nextProps.feature]));
+      this.map.getSource('highlight-feature-line').setData(featureCollection([nextProps.feature]));
+      this.map.getSource('highlight-feature-point').setData(featureCollection([nextProps.feature]));
     }
   }
 
