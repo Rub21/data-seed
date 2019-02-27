@@ -9,7 +9,7 @@ export default {
       name: 'The grenadines',
       id: '1',
       type: 'vector',
-      color: '#c300ff',
+      color: '#e5e43d',
       display: 'polygon',
       url:
         'https://gist.githubusercontent.com/osmpe/bae57d7b89bf595c3d8d72712fad7c2e/raw/20fe60114e8b4a38afd29f3de7758845759b56a3/the-grenadines-poly.geojson',
@@ -19,7 +19,7 @@ export default {
       name: 'St kitts and nevis',
       id: '2',
       type: 'vector',
-      color: '#c300ff',
+      color: '#3de266',
       display: 'polygon',
       url:
         'https://gist.githubusercontent.com/osmpe/c5e4ba800d162d7e98e8fd73b2949202/raw/90a23a755af15a224390398a8262b88c943e4a99/st-kitts-and-nevis-popy.geojson',
@@ -51,7 +51,7 @@ export default {
       name: 'Grenada',
       id: '5',
       type: 'vector',
-      color: '#c300ff',
+      color: '#7795ff',
       display: 'polygon',
       url:
         'https://gist.githubusercontent.com/osmpe/c65acf9610fcb3132b6d31290470ae09/raw/d19b647e697e651b1377ebc142796c18b6fbb42c/grenada-poly.geojson',
@@ -117,17 +117,26 @@ export default {
       url:
         'https://gist.githubusercontent.com/osmpe/e88a9dc65db4230d668b45765092ac82/raw/7bae2fcca026a003781daefcf1719850116e75bd/barbuda-poly.geojson',
       showLayer: true
+    },
+    {
+      name: 'test',
+      id: '12',
+      type: 'vector',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/186786b287257919d720d70cb46744e8/raw/b9327fb19eb430e0c3cdad6682a5f8751db2f262/test.geojson',
+      showLayer: true
     }
   ],
   tmsLayers: [
-    // {
-    //   id: 'esri-world-imagery',
-    //   name: 'Esri World Imagery',
-    //   type: 'tms',
-    //   url:
-    //     'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    //   showLayer: true
-    // },
+    {
+      id: 'esri-world-imagery',
+      name: 'Esri World Imagery',
+      type: 'tms',
+      url: 'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      showLayer: true
+    }
     // {
     //   name: ' openstreetmap',
     //   id: 'OpenStreetMap',

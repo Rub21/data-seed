@@ -46,7 +46,7 @@ class Layer extends Component {
         <ListItemIcon>
           <MapIcon style={{ color: this.props.layer.color }} />
         </ListItemIcon>
-        <ListItemText primary={this.props.layer.name} />
+        <ListItemText style={{ paddingLeft: '1px', paddingRight: '1px' }} primary={this.props.layer.name} />
         <ListItemSecondaryAction>
           <Switch onChange={this.hideOrShowLayer} checked={this.props.layer.showLayer} />
         </ListItemSecondaryAction>

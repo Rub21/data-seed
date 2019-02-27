@@ -48,6 +48,19 @@ class Map extends React.Component {
       /**
        * Set TMS Layers on the map
        */
+      const tmsLayers = this.props.tmsLayers;
+
+      for (let j = 0; j < tmsLayers.length; j++) {
+        const tmsLayer = tmsLayers[j];
+        if (!this.map.getLayer(tmsLayer.id)) {
+          this.map.addLayer(tmsStyle(tmsLayer));
+          this.map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
+        }
+      }
+
+      /**
+       * Set vector Layers on the map
+       */
 
       const layers = this.props.layers;
 
@@ -80,18 +93,6 @@ class Map extends React.Component {
            */
 
           this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
-        }
-      }
-      /**
-       * Set TMS Layers on the map
-       */
-      const tmsLayers = this.props.tmsLayers;
-
-      for (let j = 0; j < tmsLayers.length; j++) {
-        const tmsLayer = tmsLayers[j];
-        if (!this.map.getLayer(tmsLayer.id)) {
-          this.map.addLayer(tmsStyle(tmsLayer));
-          this.map.setLayoutProperty(tmsLayer.id, 'visibility', tmsLayer.showLayer ? 'visible' : 'none');
         }
       }
 
