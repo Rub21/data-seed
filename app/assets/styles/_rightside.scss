@@ -1,0 +1,34 @@
+.asideContent {
+    position: absolute;
+    z-index: 99999;
+    top: 50px;
+    right: 5px;
+    float: right;
+    width: 250px;
+    max-width: 250px;
+    max-height: calc(100vh - 100px);
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    // background-color: $base_color;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.asideContent ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.asideContent ul li {
+    line-height: 25px;
+    align-content: center;
+}
+
+.asideContent ul li span{
+    // max-width: 230px;
+}

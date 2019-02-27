@@ -22,7 +22,7 @@
     "stage": "DS_ENV=staging NODE_ENV=staging gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
     "test": "echo \"No tests\" && exit 0",
-    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 80 app/assets/scripts/*.js app/assets/scripts/*/*.js"
+    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 120 app/assets/scripts/*.js app/assets/scripts/*/*.js"
   },
   "engines": {
     "node": "8.x"
@@ -95,6 +95,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@turf/bbox": "^6.0.1",
+    "@turf/turf": "^5.1.6",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "history": "^4.7.2",

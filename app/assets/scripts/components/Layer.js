@@ -7,6 +7,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import MapIcon from '@material-ui/icons/Map';
+import ShowChart from '@material-ui/icons/ShowChart';
+import Widgets from '@material-ui/icons/Widgets';
+import ScatterPlot from '@material-ui/icons/ScatterPlot';
+import classNames from 'classnames';
 
 import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
 import { setLayers, HideShowLayers } from '../actions/LayersActions';
@@ -40,18 +44,45 @@ class Layer extends Component {
     this.props.HideShowLayers(layers);
   }
 
+  typeIcon(display) {
+    const style = { color: this.props.layer.color, width: '16px' };
+    if (display === 'line') {
+      return <ShowChart style={style} />;
+    } else if (display === 'point') {
+      return <ScatterPlot style={style} />;
+    } else {
+      return <Widgets style={style} />;
+    }
+  }
   render() {
+    // const
+    const classes = classNames({
+      form__option: true,
+      'form__option--checked': this.props.layer.showLayer,
+      'form__option--switch': true
+    });
+
     return (
       <ListItem onClick={this.zoomToLayer}>
-        <ListItemIcon>
-          <MapIcon />
-        </ListItemIcon>
-        <ListItemText primary={this.props.layer.name} />
+        <ListItemIcon>{this.typeIcon(this.props.layer.display)}</ListItemIcon>
+        <ListItemText style={{ paddingLeft: '1px', paddingRight: '1px' }} primary={this.props.layer.name} />
         <ListItemSecondaryAction>
-          <Switch
-            onChange={this.hideOrShowLayer}
-            checked={this.props.layer.showLayer}
-          />
+          <label htmlFor={this.props.layer.id} className="form__option form__option--switch">
+            <input
+              type="checkbox"
+              name={this.props.layer.id}
+              id={this.props.layer.id}
+              defaultChecked={this.props.layer.showLayer}
+              onChange={this.hideOrShowLayer}
+            />
+            <span
+              className="form__option__ui"
+              style={{
+                width: '2.3rem',
+                height: '1rem'
+              }}
+            />
+          </label>
         </ListItemSecondaryAction>
       </ListItem>
     );
