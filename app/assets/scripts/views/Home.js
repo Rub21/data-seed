@@ -9,6 +9,7 @@ import Layers from '../components/Layers';
 import Map from '../components/Map';
 import TMSLayers from '../components/TmsLayers';
 import FeatureDetails from '../components/FeatureDetails';
+import Footer from '../components/Footer';
 
 import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
@@ -68,7 +69,7 @@ class Home extends Component {
           <Header />
           <Layers />
           <Map />
-          <footer />
+          <Footer />
         </div>
         <TMSLayers />
         <FeatureDetails />
