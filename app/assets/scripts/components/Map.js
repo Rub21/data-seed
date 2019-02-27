@@ -1,11 +1,12 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import { connect } from 'react-redux';
+import { bbox, centroid, featureCollection } from '@turf/turf';
 
 import { mbtoken, mbstyle, environment } from '../config';
 // import { displayLayers, displayTMSLayers } from './Map.layers';
 
-import { polygonStyle, lineStyle, pointStyle, tmsStyle } from './../utils/mapStyles';
+import { polygonStyle, lineStyle, pointStyle, tmsStyle, highlightStyle } from './../utils/mapStyles';
 import { SetActiveFeature } from '../actions/FeatureActions';
 
 mapboxgl.accessToken = mbtoken;
@@ -85,7 +86,12 @@ class Map extends React.Component {
 
           this.map.on('click', layer.id, function(e) {
             self.map.getCanvas().style.cursor = e.features.length ? 'pointer' : '';
-            self.props.SetActiveFeature(e.features[0]);
+            const feature = {
+              type: 'Feature',
+              geometry: self.map.queryRenderedFeatures(e.point)[0].geometry,
+              properties: e.features[0].properties
+            };
+            self.props.SetActiveFeature(feature);
           });
 
           /**
@@ -95,6 +101,15 @@ class Map extends React.Component {
           this.map.setLayoutProperty(layer.id, 'visibility', layer.showLayer ? 'visible' : 'none');
         }
       }
+
+      /**
+       * Layer highlight layer
+       */
+      this.map.addSource('highlight-feature', {
+        type: 'geojson',
+        data: featureCollection([])
+      });
+      this.map.addLayer(highlightStyle);
 
       this.map.resize();
     });
@@ -126,6 +141,10 @@ class Map extends React.Component {
         }
       }
     }
+
+    if (nextProps.feature && nextProps.feature.geometry) {
+      this.map.getSource('highlight-feature').setData(featureCollection([nextProps.feature]));
+    }
   }
 
   render() {
@@ -137,7 +156,8 @@ function mapStateToPops(state, ownProps) {
   return {
     layers: state.layers,
     bbox: state.bbox,
-    tmsLayers: state.tmsLayers
+    tmsLayers: state.tmsLayers,
+    feature: state.feature
   };
 }
 
