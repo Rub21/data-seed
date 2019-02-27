@@ -67,7 +67,7 @@ class TmsLayers extends React.Component {
       <div className="tmsLayersContainer">
         <Fab
           size="small"
-          color="secondary"
+          color="default"
           aria-label="Layers"
           onMouseEnter={this.handleToggle}
           onClick={this.handleToggle}

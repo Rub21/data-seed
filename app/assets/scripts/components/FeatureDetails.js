@@ -35,7 +35,7 @@ class FeatureDetails extends Component {
             ))}
           </ul>
         ) : (
-          <h5> Select one feature!</h5>
+          <h5> Select a feature!</h5>
         )}
       </div>
     );
