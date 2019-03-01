@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bbox, centroid, featureCollection } from '@turf/turf';
 
 import { mbtoken, mbstyle, environment } from '../config';
-// import { displayLayers, displayTMSLayers } from './Map.layers';
 
 import {
   polygonStyle,
