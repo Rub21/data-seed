@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { pageTitle } from '../config';
 
 class Header extends Component {
   render () {
@@ -11,7 +12,7 @@ class Header extends Component {
             </li>
             <li className="header_navigation_title">
               <a href="/">
-                <h1>Data seed</h1>
+                <h1>{pageTitle || 'Data seed'}</h1>
               </a>
             </li>
             <li className="nav__tab" role="presentation">
