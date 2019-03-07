@@ -13,7 +13,7 @@ import { SetActiveLayer, ZoomToLayer } from '../actions/LayerActions';
 import { HideShowLayers } from '../actions/LayersActions';
 
 class Layer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.zoomToLayer = this.zoomToLayer.bind(this);
     this.hideOrShowLayer = this.hideOrShowLayer.bind(this);
@@ -22,7 +22,7 @@ class Layer extends Component {
   /**
    * Set active a layer, it will zoom to the layer and display properties
    */
-  zoomToLayer () {
+  zoomToLayer() {
     const layer = this.props.layer;
     this.props.ZoomToLayer(layer.bbox);
   }
@@ -30,7 +30,7 @@ class Layer extends Component {
   /**
    *
    */
-  hideOrShowLayer () {
+  hideOrShowLayer() {
     let layers = this.props.layers;
     const layer = this.props.layer;
     for (let i = 0; i < layers.length; i++) {
@@ -41,7 +41,7 @@ class Layer extends Component {
     this.props.HideShowLayers(layers);
   }
 
-  typeIcon (display) {
+  typeIcon(display) {
     const style = { color: this.props.layer.color, width: '16px' };
     if (display === 'line') {
       return <ShowChart style={style} />;
@@ -51,7 +51,7 @@ class Layer extends Component {
       return <Widgets style={style} />;
     }
   }
-  render () {
+  render() {
     // const
 
     return (
@@ -89,7 +89,7 @@ Layer.propTypes = {
   HideShowLayers: PropTypes.func.isRequired
 };
 
-function mapStateToPops (state, ownProps) {
+function mapStateToPops(state, ownProps) {
   return {
     layers: state.layers
   };

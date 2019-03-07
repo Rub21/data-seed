@@ -1,6 +1,6 @@
 import { SET_TMSLAYERS, HIDE_SHOW_TMSLAYERS } from '../constants';
 
-export default function LayersReducer (state = [], action) {
+export default function LayersReducer(state = [], action) {
   switch (action.type) {
     case SET_TMSLAYERS:
       return action.layers;

@@ -17,7 +17,7 @@ import { Fade } from '@material-ui/core';
 import { HideShowTMSLayers } from '../actions/TmsLayersActions';
 
 class TmsLayers extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       anchorEl: null,
@@ -27,7 +27,7 @@ class TmsLayers extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleToggleLayers (id, e) {
+  handleToggleLayers(id, e) {
     const tmsLayers = this.props.tmsLayers;
     for (let i = 0; i < tmsLayers.length; i++) {
       if (tmsLayers[i].id === id) {
@@ -37,7 +37,7 @@ class TmsLayers extends React.Component {
     this.props.HideShowTMSLayers(tmsLayers);
   }
 
-  handleToggle (event) {
+  handleToggle(event) {
     const { currentTarget } = event;
     this.setState(state => ({
       anchorEl: currentTarget,
@@ -45,14 +45,14 @@ class TmsLayers extends React.Component {
     }));
   }
 
-  handleClose (event) {
+  handleClose(event) {
     if (this.state.anchorEl.contains(event.target)) {
       return;
     }
     this.setState({ open: false });
   }
 
-  render () {
+  render() {
     const { open } = this.state;
     const tmsLayers = this.props.tmsLayers;
     return (
@@ -119,7 +119,7 @@ TmsLayers.propTypes = {
   HideShowTMSLayers: PropTypes.func.isRequired
 };
 
-function mapStateToPops (state, ownProps) {
+function mapStateToPops(state, ownProps) {
   return {
     tmsLayers: state.tmsLayers
   };

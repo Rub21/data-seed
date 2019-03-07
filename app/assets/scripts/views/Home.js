@@ -18,7 +18,7 @@ import { setTMSLayers } from '../actions/TmsLayersActions';
 import { ZoomToLayer } from '../actions/LayerActions';
 
 class Home extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       isSidebarCollased: false
@@ -26,19 +26,38 @@ class Home extends Component {
     // this.toggleSidebar = this.toggleSidebar.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     /**
      * Load the vector files
      */
     const self = this;
     let globalBbox = featureCollection([]);
-    axios.all(layers.map(layer => axios.get(layer.url))).then(
-      axios.spread(function (...response) {
+
+    const layersGeojson = layers.filter(layer => {
+      return layer.type == 'geojson';
+    });
+
+    axios.all(layersGeojson.map(layer => axios.get(layer.url))).then(
+      axios.spread(function(...response) {
         for (let i = 0; i < response.length; i++) {
-          layers[i].data = response[i].data;
-          layers[i].bbox = bbox(response[i].data);
-          globalBbox.features.push(bboxPolygon(layers[i].bbox));
+          layersGeojson[i].data = response[i].data;
+          layersGeojson[i].bbox = bbox(response[i].data);
+          globalBbox.features.push(bboxPolygon(layersGeojson[i].bbox));
         }
+
+        /**
+         * Merge geojson and vector layers in one array */
+
+        for (let j = 0; j < layers.length; j++) {
+          const layer = layers[j];
+          for (let d = 0; d < layersGeojson.length; d++) {
+            const layerGeojson = layersGeojson[d];
+            if (layer.id === layerGeojson.id) {
+              layers[j] = layerGeojson;
+            }
+          }
+        }
+
         self.props.setLayers(layers);
         self.props.ZoomToLayer(bbox(globalBbox));
       })
@@ -56,7 +75,7 @@ class Home extends Component {
   //   });
   // }
 
-  render () {
+  render() {
     const classes = classNames({
       container: true,
       'sidebar-collased': this.state.isSidebarCollased

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { pageTitle } from '../config';
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <header>
         <div className="header-container">

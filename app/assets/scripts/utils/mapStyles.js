@@ -1,19 +1,24 @@
 export const polygonStyle = layer => {
-  return {
+  let style = {
     id: layer.id,
     type: 'fill',
     source: layer.id,
     paint: {
       'fill-color': layer.color,
-      'fill-outline-color': layer.color,
+      'fill-outline-color': layer.outline_color || '#000000',
       'fill-opacity': 0.5
     },
     filter: ['==', ['geometry-type'], 'Polygon']
   };
+
+  if (layer.type === 'vector') {
+    style['source-layer'] = layer.source_layer;
+  }
+  return style;
 };
 
 export const pointStyle = layer => {
-  return {
+  let style = {
     id: layer.id,
     type: 'circle',
     source: layer.id,
@@ -26,10 +31,15 @@ export const pointStyle = layer => {
       'circle-color': layer.color
     }
   };
+
+  if (layer.type === 'vector') {
+    style['source-layer'] = layer.source_layer;
+  }
+  return style;
 };
 
 export const lineStyle = layer => {
-  return {
+  let style = {
     id: layer.id,
     type: 'line',
     source: layer.id,
@@ -42,6 +52,11 @@ export const lineStyle = layer => {
       'line-width': 2
     }
   };
+
+  if (layer.type === 'vector') {
+    style['source-layer'] = layer.source_layer;
+  }
+  return style;
 };
 
 export const tmsStyle = tmsLayer => {

@@ -56,7 +56,6 @@ class Map extends React.Component {
        * Set TMS Layers on the map
        */
       const tmsLayers = this.props.tmsLayers;
-
       for (let j = 0; j < tmsLayers.length; j++) {
         const tmsLayer = tmsLayers[j];
         if (!this.map.getLayer(tmsLayer.id)) {
@@ -74,10 +73,18 @@ class Map extends React.Component {
       for (let i = 0; i < layers.length; i++) {
         const layer = layers[i];
         if (!this.map.getSource(layer.id)) {
-          this.map.addSource(layer.id, {
-            type: 'geojson',
-            data: layer.data
-          });
+          if (layer.type === 'geojson') {
+            this.map.addSource(layer.id, {
+              type: 'geojson',
+              data: layer.data
+            });
+          } else if (layer.type === 'vector') {
+            this.map.addSource(layer.id, {
+              type: 'vector',
+              url: layer.url
+            });
+          }
+
           if (layer.display === 'polygon') {
             this.map.addLayer(polygonStyle(layer));
           } else if (layer.display === 'point') {
@@ -122,6 +129,7 @@ class Map extends React.Component {
       this.map.addLayer(highlightStyleLine);
       this.map.addLayer(highlightStylePoint);
 
+      this.map.resize();
       this.map.resize();
     });
   }
