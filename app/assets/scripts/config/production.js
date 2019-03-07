@@ -15,6 +15,7 @@ export default {
       display: 'polygon',
       url: 'mapbox://devseed.0e0ol9fw',
       source_layer: 'colombia-tiles-burvu1',
+      bbox: [-81.7, -4.3, -63.9, 15.8],
       showLayer: true
     },
     {

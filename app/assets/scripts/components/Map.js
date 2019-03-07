@@ -130,7 +130,6 @@ class Map extends React.Component {
       this.map.addLayer(highlightStylePoint);
 
       this.map.resize();
-      this.map.resize();
     });
   }
 
