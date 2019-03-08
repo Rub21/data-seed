@@ -8,7 +8,7 @@ export default {
   layers: [
     {
       name: 'OSM Tiles coverage',
-      id: '1',
+      id: '0',
       type: 'vector',
       color: '#8359d1',
       outline_color: '#5e009e',
@@ -19,14 +19,117 @@ export default {
       showLayer: true
     },
     {
-      name: 'Colombia bounduary',
-      id: '2',
+      name: 'The grenadines',
+      id: '1',
       type: 'geojson',
       color: '#e5e43d',
       display: 'polygon',
       url:
-        'https://gist.githubusercontent.com/piligab/e4bf07f77eeb80b2e3fcb22ee46ae531/raw/5760245928293af087a5cec0e0de78376b5d4431/boundary_colombia_simplified.geojson',
-      showLayer: false
+        'https://gist.githubusercontent.com/osmpe/bae57d7b89bf595c3d8d72712fad7c2e/raw/20fe60114e8b4a38afd29f3de7758845759b56a3/the-grenadines-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'St kitts and nevis',
+      id: '2',
+      type: 'geojson',
+      color: '#3de266',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/c5e4ba800d162d7e98e8fd73b2949202/raw/90a23a755af15a224390398a8262b88c943e4a99/st-kitts-and-nevis-popy.geojson',
+      showLayer: true
+    },
+
+    {
+      name: 'St vicent',
+      id: '3',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/23989b649e621d8a5c7e3db20c45462e/raw/fd63657578c7da6ce8f0325a1b8303190e6d54ed/st-vicent-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'St Lucia',
+      id: '4',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/4106c975b3a0ea7a60e9a5bc7c601d18/raw/0670757dc9fc922660dc8d4babde9691c354834d/st-lucia-poly.geojson',
+      showLayer: true
+    },
+
+    {
+      name: 'Grenada',
+      id: '5',
+      type: 'geojson',
+      color: '#7795ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/c65acf9610fcb3132b6d31290470ae09/raw/d19b647e697e651b1377ebc142796c18b6fbb42c/grenada-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'Antigua',
+      id: '6',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/bb95f5d449e0bbf14f5cb0f625ccd105/raw/9a4e619fbb15336f91c9629122510492a2d0751d/antigua-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'Anguilla',
+      id: '7',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/00159aa693f35ff5767a2ed0ab6db98a/raw/2a355d33d95754971a6a609d65ed2f84517166ea/anguilla-poly.geojson',
+      showLayer: true
+    },
+
+    {
+      name: 'Monserrat',
+      id: '8',
+      type: 'geojson',
+      color: '#ffc107',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/4810d26c09f8ab2c1641b6982f0bb027/raw/e751bd97a7bbd0b3ad43ef37f1febeba9ae8f8e0/montserrat-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'British virgin islands',
+      id: '9',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/529de0ff65680938e3a24cebb38bbe3e/raw/b480ee686227c7b3e1cbb949ad6c2f18f434188e/british_virgin_islands-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'Dominicana',
+      id: '10',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/08fa0480d9ca2e229055246b67cf2763/raw/695eac6930abe0afd10e08e65bb011424bc8382f/dominica-poly.geojson',
+      showLayer: true
+    },
+    {
+      name: 'Barbuda',
+      id: '11',
+      type: 'geojson',
+      color: '#c300ff',
+      display: 'polygon',
+      url:
+        'https://gist.githubusercontent.com/osmpe/e88a9dc65db4230d668b45765092ac82/raw/7bae2fcca026a003781daefcf1719850116e75bd/barbuda-poly.geojson',
+      showLayer: true
     }
   ],
   tmsLayers: [

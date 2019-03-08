@@ -16,6 +16,7 @@ import { layers, tmsLayers } from '../config';
 import { setLayers } from '../actions/LayersActions';
 import { setTMSLayers } from '../actions/TmsLayersActions';
 import { ZoomToLayer } from '../actions/LayerActions';
+import Features from '../components/Features';
 
 class Home extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Home extends Component {
       axios.spread(function(...response) {
         for (let i = 0; i < response.length; i++) {
           layersGeojson[i].data = response[i].data;
+          layersGeojson[i].active = false;
           layersGeojson[i].bbox = bbox(response[i].data);
           globalBbox.features.push(bboxPolygon(layersGeojson[i].bbox));
         }
@@ -50,6 +52,7 @@ class Home extends Component {
 
         for (let j = 0; j < layers.length; j++) {
           const layer = layers[j];
+          layers[j].active = false;
           for (let d = 0; d < layersGeojson.length; d++) {
             const layerGeojson = layersGeojson[d];
             if (layer.id === layerGeojson.id) {
@@ -92,6 +95,7 @@ class Home extends Component {
           <Footer />
         </div>
         <TMSLayers />
+        <Features />
         <FeatureDetails />
       </div>
     );
