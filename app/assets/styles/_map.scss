@@ -1,0 +1,11 @@
+.mapboxgl-ctrl-attrib{
+    z-index: 9999;
+    position: absolute;
+    bottom: 47px;
+    right: 1px;
+    background-color: rgba(25, 26, 26, 0.5);
+}
+.mapboxgl-ctrl-attrib a{
+    color:#fff;
+    font-size: 12px;
+}

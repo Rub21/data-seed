@@ -7,17 +7,9 @@ class Header extends Component {
       <header>
         <div className="header-container">
           <ul className="header_navigation" role="navigation">
-            <li className="header_navigation_collased_icon">
-              <button className="button">☰</button>
-            </li>
             <li className="header_navigation_title">
               <a href="/">
                 <h1>{pageTitle || 'Data seed'}</h1>
-              </a>
-            </li>
-            <li className="nav__tab" role="presentation">
-              <a href="#" className="nav__link nav__link--active" title="View item" role="tab">
-                <span>About</span>
               </a>
             </li>
           </ul>

@@ -16,6 +16,8 @@ header .header_navigation .header_navigation_collased_icon buton{
 header .header_navigation .header_navigation_title {
     margin-right: auto;
     font-size: 20px;
+    padding: 20px;
+    justify-content: center;
 }
 
 header .header_navigation li:not(:last-child):not(:first-child):not(.header_navigation_title) {

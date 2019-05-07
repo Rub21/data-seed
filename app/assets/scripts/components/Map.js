@@ -48,10 +48,13 @@ class Map extends React.Component {
       container: this.mapContainer,
       style: mbstyle,
       center: [lng, lat],
-      zoom
+      zoom,
+      attributionControl: true
     });
 
     this.map.on('load', () => {
+      this.map.addControl(new mapboxgl.AttributionControl(), 'bottom-right');
+
       /**
        * Set TMS Layers on the map
        */
